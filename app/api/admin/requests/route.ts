@@ -6,20 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key"
 
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get("auth-token")?.value || request.cookies.get("token")?.value
-
-    if (!token) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
-    }
-
-    const decoded = jwt.verify(token, JWT_SECRET) as any
-
-    // Check if user is admin
-    if (decoded.role !== "admin") {
-      return NextResponse.json({ message: "Forbidden" }, { status: 403 })
-    }
-
-    // Use Prisma client to fetch ALL requests for admin dashboard
+    // No authentication required for public feed
     const allRequests = await db.request.findMany({
       include: { user: true, surveys: true },
       orderBy: { created_at: 'desc' },
@@ -30,6 +17,7 @@ export async function GET(request: NextRequest) {
       userId: r.user_id,
       type: r.type,
       reason: r.reason ?? "",
+      description: r.description ?? "",
       status: (r.status ?? '').toString().toLowerCase(),
       submittedAt: r.created_at,
       currentAddress: r.user?.address ?? r.user_address ?? "",
@@ -48,7 +36,6 @@ export async function GET(request: NextRequest) {
       },
 
       additionalData: {
-        description: r.description ?? null,
         father_name: r.father_name ?? null,
         marital_status: r.marital_status ?? null,
         family_count: r.family_count ?? null,

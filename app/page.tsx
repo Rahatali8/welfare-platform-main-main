@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
-import ImageCarousel from "@/components/image-currosal"
 import Link from "next/link"
 import { DollarSign, BookOpen, Home, Stethoscope, GraduationCap, Utensils, Phone, MapPin, Clock, Target } from "lucide-react"
 import CallToAction from "@/components/CTA-section"
+
 import CompleteHeroSection from "@/components/complete-herosection";
 import FloatingBot from "@/components/FloatingBot"
+import RequestsFeedVertical from "@/components/RequestsFeedVertical";
 
 export default function HomePage() {
   const [, setDailyRequests] = useState<{ date: string, count: number }[]>([]);
@@ -130,6 +131,13 @@ export default function HomePage() {
         <CompleteHeroSection />
       </div>
 
+      {/* Requests Feed Section - Vertically scrollable, social style */}
+      <div className="w-full flex flex-col items-center py-8 p-7 bg-gradient-to-b from-blue-50 via-white to-blue-100 ">
+        <div className="w-full h-[600px] overflow-y-auto space-y-6 px-2 scrollbar-thin scrollbar-thumb-blue-200 scroll-smooth">
+          <RequestsFeedVertical />
+        </div>
+      </div>
+
       {/* Why Choose Us */}
       <section className="relative py-10 px-2 sm:py-16 sm:px-4 bg-gradient-to-b from-[#F8FAFF] via-white to-[#F5F7FF] overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
@@ -201,7 +209,7 @@ export default function HomePage() {
               </div>
 
               {/* Label */}
-               <div className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-3 py-1 rounded-md drop-shadow-[0_0_8px_rgba(0,102,255,0.8)] animate-pulse">
+              <div className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-3 py-1 rounded-md drop-shadow-[0_0_8px_rgba(0,102,255,0.8)] animate-pulse">
                 100% Verified
               </div>
             </Card>
@@ -228,7 +236,7 @@ export default function HomePage() {
               </div>
 
               {/* Label */}
-               <div className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-3 py-1 rounded-md drop-shadow-[0_0_8px_rgba(0,102,255,0.8)] animate-pulse">
+              <div className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-3 py-1 rounded-md drop-shadow-[0_0_8px_rgba(0,102,255,0.8)] animate-pulse">
                 Fast Process
               </div>
             </Card>
@@ -264,7 +272,6 @@ export default function HomePage() {
       </section>
 
 
-      <ImageCarousel />
 
 
       {/* Services Section */}
@@ -368,9 +375,9 @@ export default function HomePage() {
         </div>
       </section>
 
-    <CallToAction />
+      <CallToAction />
 
-    <FloatingBot />
+      <FloatingBot />
     </div>
   )
 }
