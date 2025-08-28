@@ -37,6 +37,7 @@ interface Request {
     cnic: string
     address: string
   }
+  forwardedToSurvey?: boolean
 }
 
 interface AcceptedByDonorItem {
@@ -92,7 +93,7 @@ export default function AdminDashboard() {
   const [acceptedByDonors, setAcceptedByDonors] = useState<AcceptedByDonorItem[]>([])
   const [readDonorRequests, setReadDonorRequests] = useState<number[]>([])
   const [surveyRequests, setSurveyRequests] = useState<Request[]>([])
-  const [surveyReports, setSurveyReports] = useState<Request[]>([])
+  // const [surveyReports, setSurveyReports] = useState<Request[]>([])
   const [readSurveyRequests, setReadSurveyRequests] = useState<number[]>([])
   // show counts for pagination-like 'show more' behavior
   const [showPendingCount, setShowPendingCount] = useState(6)
@@ -102,6 +103,12 @@ export default function AdminDashboard() {
   const [showAcceptedByDonorsCount, setShowAcceptedByDonorsCount] = useState(6)
   const [showAllCount, setShowAllCount] = useState(6)
   const [showDonorsCount, setShowDonorsCount] = useState(6)
+
+  // State for expanded/collapsed details for each donor-accepted request
+  const [expandedDonorRequests, setExpandedDonorRequests] = useState<{ [id: string]: boolean }>({});
+  const handleToggleDonorRequest = (id: number) => {
+    setExpandedDonorRequests((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
   const { toast } = useToast()
   const router = useRouter()
 
@@ -122,13 +129,7 @@ export default function AdminDashboard() {
     } catch { }
   }, [])
 
-   useEffect(() => {
-    if (surveyReports.length > 0 && (!selectedRequest || !surveyReports.some(r => r.id === selectedRequest.id))) {
-      setSelectedRequest(surveyReports[0]);
-    } else if (surveyReports.length === 0 && selectedRequest) {
-      setSelectedRequest(null);
-    }
-  }, [surveyReports]);
+  // Removed surveyReports effect
 
   useEffect(() => {
     filterRequests()
@@ -168,7 +169,7 @@ export default function AdminDashboard() {
               }
             })
             setSurveyRequests(surveys)
-            setSurveyReports(surveys.filter((s: any) => s.status === 'Completed' && s.sentToAdmin))
+            // setSurveyReports(surveys.filter((s: any) => s.status === 'Completed' && s.sentToAdmin))
           }
         } catch (e) {
           console.error('Failed to load surveys', e)
@@ -359,12 +360,7 @@ export default function AdminDashboard() {
           }
           setSurveyRequests((prev) => [mapped, ...prev])
           setRequests((prev) => prev.filter((r) => r.id !== applicationId))
-          // Also remove from acceptedByDonors if present and persist
-          setAcceptedByDonors((prev) => {
-            const next = prev.filter((it) => it.request.id !== applicationId)
-            try { localStorage.setItem('acceptedByDonors', JSON.stringify(next)) } catch {}
-            return next
-          })
+          // Do NOT remove from acceptedByDonors; just leave as is
         } else {
           // fallback to previous client-side move
           setRequests((prev) => prev.filter((r) => r.id !== applicationId))
@@ -533,87 +529,7 @@ export default function AdminDashboard() {
 <aside className="w-full md:w-72 mt-4 md:mt-40 self-start">
               <div className="bg-white p-2 rounded-md shadow-sm">
                 <TabsList className="flex flex-col">
-                  <TabsTrigger value="survey-reports" className="w-full flex items-center justify-between py-3 px-3 rounded-md text-sm hover:bg-gray-50">
-                    <span className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                      Survey Reports
-                      {surveyReports.some(r => !readSurveyRequests.includes(r.id)) && (
-                        <span className="ml-2 animate-pulse bg-red-600 text-white rounded-full px-2 py-0.5 text-xs font-bold">NEW</span>
-                      )}
-                    </span>
-                    <Badge className="bg-green-700 text-white text-xs px-2 py-0.5 rounded-full">{surveyReports.length}</Badge>
-                  </TabsTrigger>
-          <TabsContent value="survey-reports">
-            <Card>
-              <CardHeader>
-                <CardTitle>Survey Reports</CardTitle>
-                <CardDescription>All completed survey reports with request and report details</CardDescription>
-              </CardHeader>
-              <CardContent>
-                {surveyReports.length === 0 ? (
-                  <div className="text-center py-8">
-                    <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600">No completed survey reports</p>
-                  </div>
-                ) : (
-                  <div className="flex flex-col md:flex-row gap-8">
-                    <div className="md:w-1/2 space-y-4">
-                      {surveyReports.map((report: any, idx: number) => (
-                        <div
-                          key={report.id}
-                          className={`border rounded-lg p-4 bg-white/80 cursor-pointer ${selectedRequest && selectedRequest.id === report.id ? 'ring-2 ring-blue-500' : ''}`}
-                          onClick={() => {
-                            setSelectedRequest(report);
-                            if (!readSurveyRequests.includes(report.id)) markSurveyRequestRead(report.id);
-                          }}
-                        >
-                          <div className="mb-2 flex items-center justify-between">
-                            <h3 className="font-semibold text-lg">{report.additionalData?.full_name || report.user?.fullName || 'Applicant'}</h3>
-                            {!readSurveyRequests.includes(report.id) && (
-                              <span className="ml-2 animate-pulse bg-red-600 text-white rounded-full px-2 py-0.5 text-xs font-bold">NEW</span>
-                            )}
-                          </div>
-                          <p className="text-gray-600 text-sm">CNIC: {report.additionalData?.cnic_number || report.user?.cnic}</p>
-                          <p className="text-gray-600 text-sm">Address: {report.additionalData?.address || report.user?.address}</p>
-                          <div className="mb-2">
-                            <span className="font-medium">Survey Status:</span> <Badge className="bg-green-600 text-white">{report.status}</Badge>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="md:w-1/2">
-                      {(selectedRequest && surveyReports.some(r => r.id === selectedRequest.id)) || surveyReports.length > 0 ? (
-                        <div className="border rounded-lg p-6 bg-white/90 shadow">
-                          <h2 className="text-2xl font-bold mb-2">{(selectedRequest ? selectedRequest.additionalData?.full_name : surveyReports[0].additionalData?.full_name) || (selectedRequest ? selectedRequest.user?.fullName : surveyReports[0].user?.fullName) || 'Applicant'}</h2>
-                          <p className="text-gray-600 mb-1">CNIC: {(selectedRequest ? selectedRequest.additionalData?.cnic_number : surveyReports[0].additionalData?.cnic_number) || (selectedRequest ? selectedRequest.user?.cnic : surveyReports[0].user?.cnic)}</p>
-                          <p className="text-gray-600 mb-1">Address: {(selectedRequest ? selectedRequest.additionalData?.address : surveyReports[0].additionalData?.address) || (selectedRequest ? selectedRequest.user?.address : surveyReports[0].user?.address)}</p>
-                          <div className="mb-2">
-                            <span className="font-medium">Survey Status:</span> <Badge className="bg-green-600 text-white">{(selectedRequest ? selectedRequest.status : surveyReports[0].status)}</Badge>
-                          </div>
-                          <div className="mb-2">
-                            <span className="font-medium">Recommendation:</span> {(selectedRequest ? selectedRequest.additionalData?.recommendation : surveyReports[0].additionalData?.recommendation) || '-'}
-                          </div>
-                          <div className="mb-2">
-                            <span className="font-medium">Report:</span> {(selectedRequest ? selectedRequest.additionalData?.report : surveyReports[0].additionalData?.report) || '-'}
-                          </div>
-                          <div>
-                            <span className="font-medium">Attachments:</span>
-                            <ul className="list-disc ml-6">
-                              {(selectedRequest ? selectedRequest.additionalData?.attachments : surveyReports[0].additionalData?.attachments) && (selectedRequest ? selectedRequest.additionalData.attachments.length > 0 : surveyReports[0].additionalData.attachments.length > 0) ?
-                                (selectedRequest ? selectedRequest.additionalData.attachments : surveyReports[0].additionalData.attachments).map((att: any, idx: number) => (
-                                  <li key={idx}><a href={att.url || att} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">{att.url || att}</a></li>
-                                )) : <li>None</li>}
-                            </ul>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="text-gray-400 text-center mt-12">Select a survey report to view details</div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                  {/* Survey Reports tab and content removed */}
                   <TabsTrigger value="pending" className="w-full flex items-center justify-between py-3 px-3 rounded-md text-sm hover:bg-gray-50">
                     <span className="text-sm font-medium text-gray-700">Pending</span>
                     <Badge className="bg-slate-900 text-white text-xs px-2 py-0.5 rounded-full">{requests.filter((r) => r.status === "pending").length}</Badge>
@@ -1015,23 +931,23 @@ export default function AdminDashboard() {
                   <div className="space-y-4">
                     {acceptedByDonors.slice(0, showAcceptedByDonorsCount).map((item) => {
                       const isNew = !readDonorRequests.includes(item.request.id)
+                      const req = item.request
+                      const showDetails = expandedDonorRequests[item.id] || false;
+                      const forwarded = req.forwardedToSurvey;
                       return (
                         <div key={item.id} className={`border rounded-lg p-4 ${getStatusTintClass("approved")}`}>
                           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                             <div className="flex-1">
                               <div className="flex items-center space-x-2 mb-1">
-                                <h3 className="font-semibold text-lg">{item.request.user.fullName}</h3>
-                                <Badge variant="outline">{formatCNIC(item.request.user.cnic)}</Badge>
+                                <h3 className="font-semibold text-lg">{req.user.full_name}</h3>
+                                <Badge variant="outline">{formatCNIC(req.user.cnic)}</Badge>
                                 {isNew && (
-                                  <Badge variant="destructive" className="animate-pulse">
-                                    New
-                                  </Badge>
+                                  <Badge variant="destructive" className="animate-pulse">New</Badge>
                                 )}
                               </div>
-                              <p className="text-gray-600 capitalize">{item.request.type} Request</p>
-                              <p className="text-sm text-gray-500">{item.request.reason}</p>
-                              {item.request.amount && (
-                                <p className="text-sm text-gray-600">Requested: PKR {item.request.amount.toLocaleString()}</p>
+                              <p className="text-gray-600 capitalize">{req.type} Request</p>
+                              {req.amount && (
+                                <p className="text-sm text-gray-600">Requested: PKR {req.amount.toLocaleString()}</p>
                               )}
                               <p className="text-sm font-medium text-green-700">
                                 Donor pledged: {item.isFullfill ? `(PKR ${item.amount.toLocaleString()})` : `PKR ${item.amount.toLocaleString()}`}
@@ -1045,131 +961,95 @@ export default function AdminDashboard() {
                               </p>
                             </div>
                           </div>
-
-                          <div className="flex justify-between items-center mt-4">
-                            {/* <div className="text-sm text-gray-500">
-                              <p>
-                                Submitted:{" "}
-                                {item.request.submittedAt ? new Date(item.request.submittedAt).toLocaleDateString() : ""}
-                              </p>
-                              <p>Address: {item.request.currentAddress}</p>
-                            </div> */}
-
-                            <div className="flex items-center space-x-2">
-                              {isNew && (
-                                <Button variant="secondary" size="sm" onClick={() => handleMarkAsRead(item.request.id)}>
-                                  Mark as Read
-                                </Button>
-                              )}
-                              {/* AssignDialog removed */}
-                              <Dialog>
-                                <DialogTrigger asChild>
-                                  <Button variant="outline" size="sm" onClick={() => setSelectedRequest(item.request)}>
-                                    <Eye className="h-4 w-4 mr-1" />
-                                    View Details
-                                  </Button>
-                                </DialogTrigger>
-                                <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                                  <DialogHeader>
-                                    <DialogTitle>Request Details</DialogTitle>
-                                    <DialogDescription>
-                                      Complete information for {selectedRequest?.user.fullName}'s application
-                                    </DialogDescription>
-                                  </DialogHeader>
-                                  {selectedRequest && (
-                                    <div className="space-y-4">
-                                      <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                          <Label className="font-medium">Applicant Name</Label>
-                                          <p>{selectedRequest.user.fullName}</p>
-                                        </div>
-                                        <div>
-                                          <Label className="font-medium">CNIC</Label>
-                                          <p>{formatCNIC(selectedRequest.user.cnic)}</p>
-                                        </div>
-                                        <div>
-                                          <Label className="font-medium">Request Type</Label>
-                                          <p className="capitalize">{selectedRequest.type}</p>
-                                        </div>
-                                        <div>
-                                          <Label className="font-medium">Status</Label>
-                                          <Badge className={getStatusColor(selectedRequest.status)}>
-                                            {selectedRequest.status}
-                                          </Badge>
-                                        </div>
-                                        {selectedRequest.amount && (
-                                          <div>
-                                            <Label className="font-medium">Amount</Label>
-                                            <p>PKR {selectedRequest.amount.toLocaleString()}</p>
+                          <div className="flex items-center space-x-2 mt-2">
+                            <Button variant="outline" size="sm" onClick={() => handleToggleDonorRequest(item.id)}>
+                              {showDetails ? 'Hide Details' : 'View More'}
+                            </Button>
+                            {isNew && (
+                              <Button variant="secondary" size="sm" onClick={() => handleMarkAsRead(item.request.id)}>
+                                Mark as Read
+                              </Button>
+                            )}
+                            {!forwarded ? (
+                              <Button size="sm" className="bg-blue-600 hover:bg-blue-700" onClick={() => forwardToSurveyTeam(item.request.id)}>
+                                Forward to Survey Team
+                              </Button>
+                            ) : (
+                              <Badge className="bg-green-600 text-white text-xs px-2 py-0.5 rounded-full">Forwarded</Badge>
+                            )}
+                          </div>
+                          {showDetails && (
+                            <div className="mt-4 border-t pt-4 text-sm space-y-2">
+                              <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                  <Label className="font-medium">Applicant Name</Label>
+                                  <p>{req.user.full_name}</p>
+                                </div>
+                                <div>
+                                  <Label className="font-medium">CNIC</Label>
+                                  <p>{formatCNIC(req.user.cnic)}</p>
+                                </div>
+                                <div>
+                                  <Label className="font-medium">Request Type</Label>
+                                  <p className="capitalize">{req.type}</p>
+                                </div>
+                                <div>
+                                  <Label className="font-medium">Status</Label>
+                                  <Badge className={getStatusColor(req.status)}>{req.status}</Badge>
+                                </div>
+                                {req.amount && (
+                                  <div>
+                                    <Label className="font-medium">Amount</Label>
+                                    <p>PKR {req.amount.toLocaleString()}</p>
+                                  </div>
+                                )}
+                                <div>
+                                  <Label className="font-medium">Submitted</Label>
+                                  <p>{new Date(req.submittedAt).toLocaleDateString()}</p>
+                                </div>
+                              </div>
+                              <div>
+                                <Label className="font-medium">Registered Address</Label>
+                                <p>{req.user.address}</p>
+                              </div>
+                              <div>
+                                <Label className="font-medium">Current Address</Label>
+                                <p>{req.currentAddress}</p>
+                              </div>
+                              <div>
+                                <Label className="font-medium">Reason</Label>
+                                <p>{req.reason}</p>
+                              </div>
+                              {req.additionalData && (
+                                <div>
+                                  <Label className="font-medium">Additional Information</Label>
+                                  <div className="grid grid-cols-2 gap-3 bg-gray-50 p-3 rounded-md">
+                                    {Object.entries(req.additionalData)
+                                      .filter(([_, v]) => v !== null && v !== undefined && v !== "")
+                                      .map(([k, v]) => {
+                                        const isLinkKey = ["cnic_front", "cnic_back", "document"].includes(k)
+                                        const label = k.replace(/_/g, " ")
+                                        if (isLinkKey) {
+                                          return (
+                                            <div key={k} className="text-sm col-span-2">
+                                              <a className="text-blue-600 hover:underline" href={String(v)} target="_blank" rel="noreferrer">
+                                                View {label}
+                                              </a>
+                                            </div>
+                                          )
+                                        }
+                                        return (
+                                          <div key={k} className="text-sm">
+                                            <span className="font-medium capitalize mr-2">{label}</span>
+                                            <span className="text-gray-700">{String(v)}</span>
                                           </div>
-                                        )}
-                                        <div>
-                                          <Label className="font-medium">Submitted</Label>
-                                          <p>{new Date(selectedRequest.submittedAt).toLocaleDateString()}</p>
-                                        </div>
-                                      </div>
-
-                                      <div>
-                                        <Label className="font-medium">Registered Address</Label>
-                                        <p>{selectedRequest.user.address}</p>
-                                      </div>
-
-                                      <div>
-                                        <Label className="font-medium">Current Address</Label>
-                                        <p>{selectedRequest.currentAddress}</p>
-                                      </div>
-
-                                      <div>
-                                        <Label className="font-medium">Reason</Label>
-                                        <p>{selectedRequest.reason}</p>
-                                      </div>
-
-                                      {selectedRequest.additionalData && (
-                                        <div>
-                                          <Label className="font-medium">Additional Information</Label>
-                                          <div className="grid grid-cols-2 gap-3 bg-gray-50 p-3 rounded-md">
-                                            {Object.entries(selectedRequest.additionalData)
-                                              .filter(([_, v]) => v !== null && v !== undefined && v !== "")
-                                              .map(([k, v]) => {
-                                                const isLinkKey = ["cnic_front", "cnic_back", "document"].includes(k)
-                                                const label = k.replace(/_/g, " ")
-                                                if (isLinkKey) {
-                                                  return (
-                                                    <div key={k} className="text-sm col-span-2">
-                                                      <a
-                                                        className="text-blue-600 hover:underline"
-                                                        href={String(v)}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                      >
-                                                        View {label}
-                                                      </a>
-                                                    </div>
-                                                  )
-                                                }
-                                                return (
-                                                  <div key={k} className="text-sm">
-                                                    <span className="font-medium capitalize mr-2">{label}</span>
-                                                    <span className="text-gray-700">{String(v)}</span>
-                                                  </div>
-                                                )
-                                              })}
-                                          </div>
-                                        </div>
-                                      )}
-                                    </div>
-                                  )}
-                                </DialogContent>
-                              </Dialog>
-                              {!surveyRequests.some((r) => r.id === item.request.id) ? (
-                                <Button size="sm" className="bg-blue-600 hover:bg-blue-700" onClick={() => forwardToSurveyTeam(item.request.id)}>
-                                  Forward to Survey Team
-                                </Button>
-                              ) : (
-                                <Badge className="bg-green-600 text-white text-xs px-2 py-0.5 rounded-full">Forwarded</Badge>
+                                        )
+                                      })}
+                                  </div>
+                                </div>
                               )}
                             </div>
-                          </div>
+                          )}
                         </div>
                       )
                     })}
@@ -1191,7 +1071,7 @@ export default function AdminDashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>Accepted Requests</CardTitle>
-                <CardDescription>Requests accepted by donors with full details</CardDescription>
+                <CardDescription>All Accepted Requests</CardDescription>
               </CardHeader>
               <CardContent>
                 {requests.filter((r) => r.status === "approved").length === 0 ? (
@@ -1201,7 +1081,10 @@ export default function AdminDashboard() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {requests.filter((r) => r.status === "approved").slice(0, showApprovedCount).map((request) => (
+                    {requests
+                      .filter((r) => r.status === "approved" && !acceptedByDonors.some((item) => item.request.id === r.id))
+                      .slice(0, showApprovedCount)
+                      .map((request) => (
                       <div key={request.id} className={`border rounded-lg p-4 ${getStatusTintClass(request.status)}`}>
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                           <div className="flex-1">
@@ -1354,163 +1237,7 @@ export default function AdminDashboard() {
           </TabsContent>
 
           {/* Rejected */}
-          <TabsContent value="rejected">
-            <Card>
-              <CardHeader>
-                <CardTitle>Rejected Requests</CardTitle>
-                <CardDescription>Applications with rejection reasons</CardDescription>
-              </CardHeader>
-              <CardContent>
-                {requests.filter((r) => r.status === "rejected").length === 0 ? (
-                  <div className="text-center py-8">
-                    <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600">No rejected requests</p>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {requests.filter((r) => r.status === "rejected").slice(0, showRejectedCount).map((request) => (
-                      <div key={request.id} className={`border rounded-lg p-4 ${getStatusTintClass(request.status)}`}>
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                          <div className="flex-1">
-                            <div className="flex items-center space-x-2 mb-1">
-                              <h3 className="font-semibold text-lg">{request.user.fullName}</h3>
-                              <Badge variant="outline">{formatCNIC(request.user.cnic)}</Badge>
-                            </div>
-                            <p className="text-gray-600 capitalize">{request.type} Request</p>
-                            <p className="text-sm text-gray-500">{request.reason}</p>
-                            <p className="text-sm text-red-600">Rejected reason: {request.rejection_reason || 'N/A'}</p>
-                            <p className="text-xs text-gray-500 mt-1">Rejected at: {request.updated_at ? new Date(request.updated_at).toLocaleString() : '—'}</p>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Badge className={getStatusColor(request.status)}>
-                              <div className="flex items-center space-x-1">
-                                {getStatusIcon(request.status)}
-                                <span className="capitalize">{request.status}</span>
-                              </div>
-                            </Badge>
-                          </div>
-                        </div>
 
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mt-4">
-                          <div className="text-sm text-gray-500">
-                            <p>Submitted: {new Date(request.submittedAt).toLocaleDateString()}</p>
-                            <p>Address: {request.currentAddress}</p>
-                          </div>
-
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="outline" size="sm" onClick={() => setSelectedRequest(request)}>
-                                <Eye className="h-4 w-4 mr-1" />
-                                View Details
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                              <DialogHeader>
-                                <DialogTitle>Request Details</DialogTitle>
-                                <DialogDescription>
-                                  Complete information for {selectedRequest?.user.fullName}'s application
-                                </DialogDescription>
-                              </DialogHeader>
-                              {selectedRequest && (
-                                <div className="space-y-4">
-                                  <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                      <Label className="font-medium">Applicant Name</Label>
-                                      <p>{selectedRequest.user.fullName}</p>
-                                    </div>
-                                    <div>
-                                      <Label className="font-medium">CNIC</Label>
-                                      <p>{formatCNIC(selectedRequest.user.cnic)}</p>
-                                    </div>
-                                    <div>
-                                      <Label className="font-medium">Request Type</Label>
-                                      <p className="capitalize">{selectedRequest.type}</p>
-                                    </div>
-                                    <div>
-                                      <Label className="font-medium">Status</Label>
-                                      <Badge className={getStatusColor(selectedRequest.status)}>
-                                        {selectedRequest.status}
-                                      </Badge>
-                                    </div>
-                                    {selectedRequest.amount && (
-                                      <div>
-                                        <Label className="font-medium">Amount</Label>
-                                        <p>PKR {selectedRequest.amount.toLocaleString()}</p>
-                                      </div>
-                                    )}
-                                    <div>
-                                      <Label className="font-medium">Submitted</Label>
-                                      <p>{new Date(selectedRequest.submittedAt).toLocaleDateString()}</p>
-                                    </div>
-                                    <div>
-                                      <Label className="font-medium">Rejected At</Label>
-                                      <p>{selectedRequest.updated_at ? new Date(selectedRequest.updated_at).toLocaleString() : '—'}</p>
-                                    </div>
-                                  </div>
-
-                                  <div>
-                                    <Label className="font-medium">Registered Address</Label>
-                                    <p>{selectedRequest.user.address}</p>
-                                  </div>
-
-                                  <div>
-                                    <Label className="font-medium">Current Address</Label>
-                                    <p>{selectedRequest.currentAddress}</p>
-                                  </div>
-
-                                  <div>
-                                    <Label className="font-medium">Reason</Label>
-                                    <p>{selectedRequest.reason}</p>
-                                  </div>
-
-                                  {selectedRequest.additionalData && (
-                                    <div>
-                                      <Label className="font-medium">Additional Information</Label>
-                                      <div className="grid grid-cols-2 gap-3 bg-gray-50 p-3 rounded-md">
-                                        {Object.entries(selectedRequest.additionalData)
-                                          .filter(([_, v]) => v !== null && v !== undefined && v !== '')
-                                          .map(([k, v]) => {
-                                            const isLinkKey = ['cnic_front', 'cnic_back', 'document'].includes(k)
-                                            const label = k.replace(/_/g, ' ')
-                                            if (isLinkKey) {
-                                              return (
-                                                <div key={k} className="text-sm col-span-2">
-                                                  <a className="text-blue-600 hover:underline" href={String(v)} target="_blank" rel="noreferrer">
-                                                    View {label}
-                                                  </a>
-                                                </div>
-                                              )
-                                            }
-                                            return (
-                                              <div key={k} className="text-sm">
-                                                <span className="font-medium capitalize mr-2">{label}</span>
-                                                <span className="text-gray-700">{String(v)}</span>
-                                              </div>
-                                            )
-                                          })}
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </DialogContent>
-                          </Dialog>
-                        </div>
-                      </div>
-                    ))}
-                    {requests.filter((r) => r.status === "rejected").length > showRejectedCount && (
-                      <div className="flex items-center justify-center gap-2 pt-2">
-                        <Button variant="ghost" onClick={() => setShowRejectedCount((c) => c + 6)}>Show more</Button>
-                        {showRejectedCount > 6 && (
-                          <Button variant="outline" onClick={() => setShowRejectedCount((c) => Math.max(6, c - 6))}>Show less</Button>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
 
           <TabsContent value="all-requests">
             <Card>

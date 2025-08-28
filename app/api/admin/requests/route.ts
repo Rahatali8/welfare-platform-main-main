@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
       created_at: r.created_at,
       updated_at: r.updated_at,
       rejection_reason: r.rejection_reason ?? null,
+      forwardedToSurvey: r.forwardedToSurvey ?? false,
 
       user: {
         fullName: r.full_name ?? r.user?.name ?? '',

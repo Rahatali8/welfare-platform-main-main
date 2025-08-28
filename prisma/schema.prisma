@@ -81,6 +81,7 @@ model Request {
   repayment_time String?
   rejection_reason String?
   verification_complete Boolean @default(false)
+  forwardedToSurvey Boolean @default(false)
   user           User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
   surveys        Survey[]
 

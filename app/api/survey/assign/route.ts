@@ -24,8 +24,11 @@ export async function POST(request: NextRequest) {
       include: { application: true },
     })
 
-    // mark request verification as not complete yet (use raw SQL to avoid typing mismatch)
-    await db.$executeRaw`UPDATE requests SET verification_complete = false WHERE id = ${Number(applicationId)}`
+    // mark request verification as not complete yet and set forwardedToSurvey true
+    await db.request.update({
+      where: { id: Number(applicationId) },
+      data: { verification_complete: false, forwardedToSurvey: true },
+    })
 
     return NextResponse.json({ success: true, survey })
   } catch (error) {

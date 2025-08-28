@@ -15,15 +15,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    // Update request status
+    // Update request status and verification/forwarded flags
+    let updateData: any = {
+      status: status,
+      rejection_reason: status === "rejected" ? rejectionReason : null,
+      updated_at: new Date(),
+      verification_complete: false,
+      forwardedToSurvey: false,
+    };
+    if (status === "approved") {
+      updateData.verification_complete = true;
+      updateData.forwardedToSurvey = false;
+    }
+    if (status === "rejected") {
+      updateData.verification_complete = false;
+      updateData.forwardedToSurvey = false;
+    }
     const updatedRequest = await db.request.update({
       where: { id: requestId },
-      data: {
-        status: status,
-        rejection_reason: status === "rejected" ? rejectionReason : null,
-        updated_at: new Date()
-      }
-    })
+      data: updateData
+    });
 
     return NextResponse.json({ 
       success: true, 
