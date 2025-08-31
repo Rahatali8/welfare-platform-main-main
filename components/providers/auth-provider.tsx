@@ -63,7 +63,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
-      await fetch("/api/auth/logout", { method: "POST" }) // hum ye agay banaenge
+      // include credentials so browser will accept the Set-Cookie header that clears the cookie
+      await fetch("/api/auth/logout", { method: "POST", credentials: "include" })
       setUser(null)
       if (typeof window !== "undefined") {
         window.location.href = "/";

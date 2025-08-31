@@ -19,7 +19,12 @@ export async function GET() {
     }
 
     // Token verify karna
-    const decoded = jwt.verify(token, JWT_SECRET) as { id: number };
+    const decoded = jwt.verify(token, JWT_SECRET) as { id: number; role?: string };
+
+    // If token belongs to another role (admin/donor), don't treat it as a regular user
+    if (decoded && decoded.role && decoded.role !== "user") {
+      return NextResponse.json({ user: null }, { status: 200 });
+    }
 
     // User ka data fetch karna
     const user = await prisma.user.findUnique({

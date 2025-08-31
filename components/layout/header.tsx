@@ -112,9 +112,10 @@ export function Header() {
                 >
                   Login <ChevronDown className="w-4 h-4" />
                 </Button>
-                <div className="absolute hidden group-hover:block bg-white shadow-xl rounded-xl mt-2 w-44 z-50 border border-blue-100">
+                  <div className="absolute hidden group-hover:block bg-white shadow-xl rounded-xl mt-2 w-48 z-50 border border-blue-100">
                   <Link href="/login" className="block w-full text-left px-5 py-3 text-base text-blue-900 hover:bg-blue-50 rounded-t-xl">User Login</Link>
                   <Link href="/donor/login" className="block w-full text-left px-5 py-3 text-base text-blue-900 hover:bg-blue-50">Donor Login</Link>
+                  <Link href="/survey-login" className="block w-full text-left px-5 py-3 text-base text-blue-900 hover:bg-blue-50">Survey Team</Link>
                   <Link href="/admin/login" className="block w-full text-left px-5 py-3 text-base text-blue-900 hover:bg-blue-50 rounded-b-xl">Admin Login</Link>
                 </div>
               </div>

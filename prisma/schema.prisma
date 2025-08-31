@@ -142,6 +142,15 @@ model SurveyAttachment {
   uploadedAt DateTime @default(now())
 }
 
+model survay_members {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  age        Int?
+  created_at DateTime @default(now())
+}
+
+
 enum RequestType {
   aid
   loan
