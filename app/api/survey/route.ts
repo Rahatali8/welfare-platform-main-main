@@ -7,9 +7,9 @@ export async function GET(request: Request) {
   const auth = await verifyAuth(request);
   let surveys = [];
   if (auth.user.role === "admin") {
-    // Admin: show all completed and sentToAdmin surveys
+    // Admin: show all surveys for requests that have been forwarded to survey team
     surveys = await db.survey.findMany({
-      where: { status: "Completed", sentToAdmin: true },
+      where: { application: { forwardedToSurvey: true } },
       include: { application: true, attachments: true },
       orderBy: { createdAt: "desc" },
     });

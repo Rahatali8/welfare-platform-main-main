@@ -68,6 +68,7 @@ interface Donor {
 }
 
 interface Analytics {
+  totalUsers: ReactNode
   totalRequests: number
   pendingRequests: number
   approvedRequests: number
@@ -93,9 +94,7 @@ export default function AdminDashboard() {
   const [acceptedByDonors, setAcceptedByDonors] = useState<AcceptedByDonorItem[]>([])
   const [readDonorRequests, setReadDonorRequests] = useState<number[]>([])
   const [surveyRequests, setSurveyRequests] = useState<Request[]>([])
-  // const [surveyReports, setSurveyReports] = useState<Request[]>([])
   const [readSurveyRequests, setReadSurveyRequests] = useState<number[]>([])
-  // show counts for pagination-like 'show more' behavior
   const [showPendingCount, setShowPendingCount] = useState(6)
   const [showApprovedCount, setShowApprovedCount] = useState(6)
   const [showRejectedCount, setShowRejectedCount] = useState(6)
@@ -104,7 +103,6 @@ export default function AdminDashboard() {
   const [showAllCount, setShowAllCount] = useState(6)
   const [showDonorsCount, setShowDonorsCount] = useState(6)
 
-  // State for expanded/collapsed details for each donor-accepted request
   const [expandedDonorRequests, setExpandedDonorRequests] = useState<{ [id: string]: boolean }>({});
   const handleToggleDonorRequest = (id: number) => {
     setExpandedDonorRequests((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -112,13 +110,14 @@ export default function AdminDashboard() {
   const { toast } = useToast()
   const router = useRouter()
 
-  // AssignDialog removed: admin no longer assigns to individual survey officers.
 
   useEffect(() => {
     fetchRequests()
     fetchAnalytics()
     fetchDonors()
-    // Load donor-accepted items from localStorage (client-only)
+
+
+
     try {
       const raw = typeof window !== 'undefined' ? localStorage.getItem('acceptedByDonors') : null
       if (raw) setAcceptedByDonors(JSON.parse(raw))
@@ -357,20 +356,23 @@ export default function AdminDashboard() {
             currentAddress: app.user?.address || app.user_address || '',
             additionalData: app,
             verification_complete: app.verification_complete || false,
+            forwardedToSurvey: true,
           }
           setSurveyRequests((prev) => [mapped, ...prev])
           setRequests((prev) => prev.filter((r) => r.id !== applicationId))
-          // Do NOT remove from acceptedByDonors; just leave as is
         } else {
-          // fallback to previous client-side move
           setRequests((prev) => prev.filter((r) => r.id !== applicationId))
           const forwarded = requests.find((r) => r.id === applicationId)
           if (forwarded) setSurveyRequests((prev) => [forwarded, ...prev])
         }
-        // mark as unread (new)
+        // Update acceptedByDonors state to set forwardedToSurvey true for this request
+        setAcceptedByDonors((prev) => prev.map(item =>
+          item.request.id === applicationId
+            ? { ...item, request: { ...item.request, forwardedToSurvey: true } }
+            : item
+        ))
         setReadSurveyRequests((prev) => {
           const next = prev.filter((id) => id !== applicationId)
-          // ensure it's not marked read
           try { localStorage.setItem('readSurveyRequests', JSON.stringify(next)) } catch { }
           return next
         })
@@ -476,7 +478,7 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Analytics Cards */}
         {analytics && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Requests</CardTitle>
@@ -520,6 +522,17 @@ export default function AdminDashboard() {
                 <p className="text-xs text-muted-foreground">Rejected requests</p>
               </CardContent>
             </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Users</CardTitle>
+                <Users className="h-4 w-4 text-blue-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-blue-600">{analytics.totalUsers}</div>
+                <p className="text-xs text-muted-foreground">Users signed up</p>
+              </CardContent>
+            </Card>
           </div>
         )}
 
@@ -537,7 +550,7 @@ export default function AdminDashboard() {
 
                   <TabsTrigger value="approved" className="w-full flex items-center justify-between py-3 px-3 rounded-md text-sm hover:bg-gray-50">
                     <span className="text-sm font-medium text-gray-700">Accepted</span>
-                    <Badge className="bg-slate-900 text-white text-xs px-2 py-0.5 rounded-full">{requests.filter((r) => r.status === "approved").length}</Badge>
+                    <Badge className="bg-slate-900 text-white text-xs px-2 py-0.5 rounded-full">{requests.filter((r) => r.status === "approved" && !acceptedByDonors.some((d) => d.request.id === r.id)).length}</Badge>
                   </TabsTrigger>
 
                   <TabsTrigger value="rejected" className="w-full flex items-center justify-between py-3 px-3 rounded-md text-sm hover:bg-gray-50">
@@ -545,7 +558,7 @@ export default function AdminDashboard() {
                     <Badge className="bg-slate-900 text-white text-xs px-2 py-0.5 rounded-full">{requests.filter((r) => r.status === "rejected").length}</Badge>
                   </TabsTrigger>
 
-                  <TabsTrigger value="accepted-by-donors" className="w-full flex items-center justify-between py-3 px-3 rounded-md text-sm hover:bg-gray-50">
+                  <TabsTrigger value="accepted-by-donors" className="w-full flex items-center justify-between py-3 px-3 text-sm !bg-transparent !shadow-none data-[state=active]:!bg-transparent data-[state=active]:!shadow-none">
                     <span className="text-sm font-medium text-gray-700">Accepted by Donors</span>
                     <Badge className="bg-slate-900 text-white text-xs px-2 py-0.5 rounded-full">{acceptedByDonors.length}</Badge>
                   </TabsTrigger>
@@ -929,12 +942,14 @@ export default function AdminDashboard() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {acceptedByDonors.slice(0, showAcceptedByDonorsCount).map((item) => {
-                      const isNew = !readDonorRequests.includes(item.request.id)
-                      const req = item.request
-                      const showDetails = expandedDonorRequests[item.id] || false;
-                      const forwarded = req.forwardedToSurvey;
-                      return (
+                    {acceptedByDonors
+                      .slice(0, showAcceptedByDonorsCount)
+                      .map((item) => {
+                        const isNew = !readDonorRequests.includes(item.request.id)
+                        const req = item.request
+                        const showDetails = expandedDonorRequests[item.id] || false;
+                        const forwarded = req.forwardedToSurvey;
+                        return (
                         <div key={item.id} className={`border rounded-lg p-4 ${getStatusTintClass("approved")}`}>
                           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                             <div className="flex-1">
@@ -971,7 +986,21 @@ export default function AdminDashboard() {
                               </Button>
                             )}
                             {!forwarded ? (
-                              <Button size="sm" className="bg-blue-600 hover:bg-blue-700" onClick={() => forwardToSurveyTeam(item.request.id)}>
+                              <Button size="sm" className="bg-blue-600 hover:bg-blue-700"
+                                onClick={async () => {
+                                  await forwardToSurveyTeam(item.request.id);
+                                  setAcceptedByDonors((prev) => {
+                                    const updated = prev.map(d =>
+                                      d.request.id === item.request.id
+                                        ? { ...d, request: { ...d.request, forwardedToSurvey: true } }
+                                        : d
+                                    );
+                                    if (typeof window !== "undefined") {
+                                      localStorage.setItem("acceptedByDonors", JSON.stringify(updated));
+                                    }
+                                    return updated;
+                                  });
+                                }}>
                                 Forward to Survey Team
                               </Button>
                             ) : (
@@ -1216,9 +1245,21 @@ export default function AdminDashboard() {
                               )}
                             </DialogContent>
                           </Dialog>
-                          <Button size="sm" className="bg-blue-600 hover:bg-blue-700" onClick={() => forwardToSurveyTeam(request.id)}>
-                            Forward to Survey Team
-                          </Button>
+                          {!request.forwardedToSurvey ? (
+                            <Button size="sm" className="bg-blue-600 hover:bg-blue-700"
+                              onClick={async () => {
+                                await forwardToSurveyTeam(request.id);
+                                setRequests((prev) => prev.map(r =>
+                                  r.id === request.id
+                                    ? { ...r, forwardedToSurvey: true }
+                                    : r
+                                ));
+                              }}>
+                              Forward to Survey Team
+                            </Button>
+                          ) : (
+                            <Badge className="bg-green-600 text-white text-xs px-2 py-0.5 rounded-full">Forwarded</Badge>
+                          )}
                         </div>
                       </div>
                     ))}

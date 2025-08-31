@@ -18,8 +18,10 @@ export default function RequestsFeedVertical() {
   }, []);
 
   return (
-    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {requests.map((r: any) => (
+    <div>
+      <h2 className="text-5xl font-bold text-[#1B0073] text-center m-10">The Request <span className="text-[#00A5E0]">Streamline</span></h2>
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {requests.map((r: any) => (
         <div
           key={r.id}
           onClick={() => router.push('/donor/login')}
@@ -47,15 +49,14 @@ export default function RequestsFeedVertical() {
                 </div>
               </div>
               <span
-                className={`ml-auto px-3 py-1 rounded-full text-xs font-semibold capitalize shadow ${
-                  r.status === "approved"
+                className={`ml-auto px-3 py-1 rounded-full text-xs font-semibold capitalize shadow ${r.status === "approved"
                     ? "bg-green-100 text-green-700"
                     : r.status === "pending"
-                    ? "bg-yellow-100 text-yellow-700"
-                    : r.status === "rejected"
-                    ? "bg-red-100 text-red-700"
-                    : "bg-gray-100 text-gray-700"
-                }`}
+                      ? "bg-yellow-100 text-yellow-700"
+                      : r.status === "rejected"
+                        ? "bg-red-100 text-red-700"
+                        : "bg-gray-100 text-gray-700"
+                  }`}
               >
                 {r.status}
               </span>
@@ -76,10 +77,11 @@ export default function RequestsFeedVertical() {
               <div className="text-xs text-gray-400">
                 {new Date(r.submittedAt).toLocaleDateString()}
               </div>
-              <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm shadow-sm border border-blue-200 select-none cursor-default mx-2">Join Us</span>
               <div className="text-xs text-gray-400">
                 CNIC: {r.user?.cnic || "-"}
               </div>
+              <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm shadow-sm border border-blue-200 select-none cursor-default mx-2">Join Us to donate</span>
+
             </div>
             <div className="absolute top-2 right-2">
               {/* Optionally add a badge or icon here */}
@@ -87,6 +89,7 @@ export default function RequestsFeedVertical() {
           </Card>
         </div>
       ))}
+      </div>
     </div>
   );
 }

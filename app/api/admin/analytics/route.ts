@@ -18,9 +18,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ message: "Forbidden" }, { status: 403 })
     }
 
-    // Get total requests
-    const totalRows = (await db.$queryRaw<any[]>`SELECT COUNT(*) as total FROM requests`) as any[]
-    const totalRequests = Number(totalRows[0]?.total ?? 0)
+
+  // Get total requests
+  const totalRows = (await db.$queryRaw<any[]>`SELECT COUNT(*) as total FROM requests`) as any[]
+  const totalRequests = Number(totalRows[0]?.total ?? 0)
+
+  // Get total users
+  const userRows = (await db.$queryRaw<any[]>`SELECT COUNT(*) as total FROM users`) as any[]
+  const totalUsers = Number(userRows[0]?.total ?? 0)
 
     // Get pending requests
     const pendingRows = (await db.$queryRaw<any[]>`SELECT COUNT(*) as pending FROM requests WHERE status = 'pending'`) as any[]
@@ -58,6 +63,7 @@ export async function GET(request: NextRequest) {
         loanRequests,
         microfinanceRequests,
         generalRequests,
+        totalUsers,
       },
     })
   } catch (error) {
