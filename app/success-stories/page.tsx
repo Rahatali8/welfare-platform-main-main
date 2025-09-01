@@ -17,7 +17,7 @@ const successStories = [
     amount: "PKR 300,000",
     outcome: "Monthly income increased from PKR 15,000 to PKR 45,000",
     story: "Started a tailoring business and now employs 3 women",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/swing-machine.jpg",
     verified: true,
   },
   {
@@ -28,7 +28,7 @@ const successStories = [
     amount: "PKR 150,000",
     outcome: "Successful heart surgery completed",
     story: "Father of 4 received life-saving cardiac treatment",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/household.jpg",
     verified: true,
   },
   {
@@ -39,7 +39,7 @@ const successStories = [
     amount: "PKR 80,000",
     outcome: "Completed MBA degree with distinction",
     story: "First in family to complete higher education",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/solar-system.jpg",
     verified: true,
   },
   {
@@ -50,7 +50,7 @@ const successStories = [
     amount: "PKR 50,000",
     outcome: "Vegetable business expanded to 3 locations",
     story: "From street vendor to shop owner in 8 months",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/WhatsApp Image 2025-09-01 at 10.00.14_dda14157.jpg",
     verified: true,
   },
   {
@@ -148,10 +148,9 @@ export default function SuccessStoriesPage() {
     <div className="bg-white">
       {/* Hero Section */}
       <section
-        className="relative py-20 px-4 bg-cover bg-center bg-fixed h-[70vh] flex flex-col items-center justify-center text-center"
+        className="relative py-20 px-4 bg-cover bg-center bg-fixed h-[80vh] flex flex-col items-center justify-center text-center"
         style={{
-          backgroundImage:
-            "url('https://png.pngtree.com/background/20210711/original/pngtree-caring-for-the-elderly-public-welfare-design-psd-layering-picture-image_1125477.jpg')",
+          backgroundImage: "url('/success-stories-hero-section.jpg')",
         }}
       >
         {/* Overlay for opacity */}
@@ -233,6 +232,7 @@ export default function SuccessStoriesPage() {
       <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
+            <h1 className="text-center font-bold text-5xl text-[#1B0073] pb-10">Featured Success <span className="text-[#00A5E0]">Stories</span></h1>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Success Stories</h2>
             <p className="text-xl text-gray-600">
               Meet the inspiring individuals who have transformed their lives through our programs
