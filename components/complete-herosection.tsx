@@ -11,10 +11,10 @@ const CompleteHeroSection: React.FC = () => {
 
   // Built-in images - aap apni images yahan replace kar sakte hain
   const images = [
-    "/hero1.jpg",
-    "/hero2.jpg",
-    "/welfare-work.png",
-    "/head-logo.png",
+    "/rozgar-umeed.png",
+    "/har-hunar-ko-moqa.png",
+    "/madad-jo-badle-zindagi.png",
+    "/roshan-mustaqbil.jpg",
     "/footer-logo.png",
     "/ultra-detailed_close-up_side_profile_of_a_dark-skinned_model_wearing_futuristic_chrome_wraparound_s_ps17q5ms2ptu5t6bdru6_2.png",
     "/slide.png",
@@ -309,7 +309,7 @@ const CompleteHeroSection: React.FC = () => {
       `}</style>
 
       <section
-        className="relative overflow-hidden min-h-[88vh] pt-0 pb-12 md:pt-0 md:pb-16 lg:pt-0 lg:pb-20 lg:mt-[-25px] w-full"
+        className="relative overflow-hidden min-h-[85vh] pt-0 pb-12 md:pt-0 md:pb-16 lg:pt-0 lg:pb-20 lg:mt-[-25px] w-full"
         style={backgroundStyle}
       >
         {/* Animated background overlay */}

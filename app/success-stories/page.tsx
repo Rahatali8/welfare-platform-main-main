@@ -61,7 +61,7 @@ const successStories = [
     amount: "PKR 120,000",
     outcome: "Beauty salon serving 200+ customers monthly",
     story: "Trained 15 other women in beauty skills",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/fries ka thela.jpeg",
     verified: true,
   },
   {
@@ -72,7 +72,7 @@ const successStories = [
     amount: "PKR 200,000",
     outcome: "Crop yield increased by 150%",
     story: "Modern farming techniques transformed his 5-acre farm",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/vagetable.jpeg",
     verified: true,
   },
   {
@@ -83,7 +83,7 @@ const successStories = [
     amount: "PKR 60,000",
     outcome: "Computer training led to office job",
     story: "From housewife to IT professional earning PKR 35,000/month",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/chees.jpeg",
     verified: true,
   },
   {
@@ -94,7 +94,7 @@ const successStories = [
     amount: "PKR 400,000",
     outcome: "Sports goods export business to 5 countries",
     story: "Employs 25 people and exports globally",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/swing-machine.jpeg",
     verified: true,
   },
   {
@@ -105,7 +105,7 @@ const successStories = [
     amount: "PKR 180,000",
     outcome: "Daughter's cancer treatment successful",
     story: "5-year-old daughter is now cancer-free and healthy",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/simple-thela.jpeg",
     verified: true,
   },
   {
@@ -116,7 +116,7 @@ const successStories = [
     amount: "PKR 90,000",
     outcome: "Mobile repair shop earning PKR 60,000/month",
     story: "6-month course led to successful tech business",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/pulao.jpeg",
     verified: true,
   },
   {
@@ -127,7 +127,7 @@ const successStories = [
     amount: "PKR 100,000",
     outcome: "Home-based catering business serves 50+ families",
     story: "Supporting 3 children through food business",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/v-t.jpeg",
     verified: true,
   },
   {
@@ -138,7 +138,7 @@ const successStories = [
     amount: "PKR 250,000",
     outcome: "Dairy farm produces 200 liters milk daily",
     story: "From 2 buffaloes to 15-animal dairy operation",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/swing.jpeg",
     verified: true,
   },
 ]
