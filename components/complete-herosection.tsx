@@ -191,7 +191,8 @@ const CompleteHeroSection: React.FC = () => {
   // Background style object
   const backgroundStyle = backgroundImage
     ? {
-      backgroundImage: `url(${backgroundImage})`,
+      // Darken the left half more while keeping the right side as-is
+      backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 35%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0) 100%), url(${backgroundImage})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
@@ -343,11 +344,22 @@ const CompleteHeroSection: React.FC = () => {
             <h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               style={{
-                // textShadow:"0 2px 4px rgba(0,0,0,0.7), 0 0 8px rgba(255,255,255,0.1)",
-                // filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))",
+                // keep original colors but add a subtle white glow to enhance contrast
+                textShadow: `0 2px 8px rgba(255,255,255,0.18), 0 6px 20px rgba(,0,0,0.55)`,
+                WebkitTextStroke: "0px transparent",
               }}
             >
-              <span style={{ color: "#1B0073"}}>
+              <span
+                style={{
+                  color: "#1B0073",
+                  // stronger white glow + deep shadow for high contrast
+                  textShadow: "0 2px 12px rgba(255,255,255,0.28), 0 8px 30px rgba(0,0,0,0.68)",
+                  WebkitTextStroke: "0.7px rgba(255,255,255,0.18)",
+                  fontWeight: 900,
+                  letterSpacing: "0.2px",
+                  filter: "drop-shadow(0 2px 6px rgba(255,255,255,0.06))",
+                }}
+              >
                 {currentContent.heading.split(" ").slice(0, Math.ceil(currentContent.heading.split(" ").length / 2)).join(" ")}
               </span>{" "}
               <span style={{ color: "#00A5E0" }}>

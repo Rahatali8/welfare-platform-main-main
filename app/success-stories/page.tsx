@@ -138,7 +138,7 @@ const successStories = [
     amount: "PKR 250,000",
     outcome: "Dairy farm produces 200 liters milk daily",
     story: "From 2 buffaloes to 15-animal dairy operation",
-    image: "/swing.jpeg",
+    image: "/baby.png",
     verified: true,
   },
 ]
