@@ -57,7 +57,7 @@ export default function HomePage() {
         "We provide emergency loans and microfinance support to uplift small businesses, assist low-income families, and help individuals overcome sudden financial crises with dignity and confidence.",
       color: "bg-green-100 text-green-600",
       cases: "2,400+ Cases",
-      image: "/help1.jpg",
+      image: "/help12.png",
       href: "/services",
     },
     {
@@ -67,7 +67,7 @@ export default function HomePage() {
         "From covering hospital expenses to providing essential medicines, we ensure patients receive timely healthcare services and struggling families get much-needed relief during medical emergencies.",
       color: "bg-red-100 text-red-600",
       cases: "3,400+ Patients",
-      image: "/help2.jpg",
+      image: "/help3.png",
       href: "/services",
     },
     {
@@ -77,7 +77,7 @@ export default function HomePage() {
         "Scholarships, school supplies, and financial aid programs help deserving students continue their studies, achieve academic excellence, and build brighter futures without interruptions or obstacles.",
       color: "bg-blue-100 text-blue-600",
       cases: "1,200+ Students",
-      image: "/help3.jpg",
+      image: "/help11.png",
       href: "/services",
     },
     {
@@ -87,7 +87,7 @@ export default function HomePage() {
         "We ease marriage expenses through financial aid, dowry assistance, and household setup support, helping underprivileged families start new journeys with hope, dignity, and lasting stability.",
       color: "bg-purple-100 text-purple-600",
       cases: "800+ Homes",
-      image: "/help4.jpg",
+      image: "/help7.png",
       href: "/services",
     },
     {
@@ -97,7 +97,7 @@ export default function HomePage() {
         "We provide seed capital, expert guidance, and essential resources to help aspiring entrepreneurs start or expand small businesses, promoting self-reliance, growth, and sustainable livelihoods.",
       color: "bg-orange-100 text-orange-600",
       cases: "5,600+ Families",
-      image: "/help5.jpg",
+      image: "/help10.png",
       href: "/services",
     },
     {
@@ -107,7 +107,7 @@ export default function HomePage() {
         "Providing tools, sewing machines, carts, and small resources to deserving families so they can start earning with dignity, support their children’s education, and build a stable future.",
       color: "bg-cyan-100 text-cyan-600",
       cases: "1200+ Families Supported",
-      image: "/help6.jpg",
+      image: "/help6.png",
       href: "/services",
     },
 
