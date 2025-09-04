@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
-import { DollarSign, BookOpen, Home, Stethoscope, GraduationCap, Utensils, Phone, MapPin, Clock, Target } from "lucide-react"
+import { DollarSign, BookOpen, Home, Stethoscope, GraduationCap, Utensils, Phone, MapPin, Clock, Target, Heart, ArrowRight } from "lucide-react"
 import CallToAction from "@/components/CTA-section"
-import CompleteHeroSection from "@/components/complete-herosection";
 import FloatingBot from "@/components/FloatingBot"
 import RequestsFeedVertical from "@/components/RequestsFeedVertical";
+import RecentNews from "@/components/recent-news"
+
 
 export default function HomePage() {
   const [, setDailyRequests] = useState<{ date: string, count: number }[]>([]);
@@ -127,7 +128,71 @@ export default function HomePage() {
     <div className="min-h-screen bg-white">
 
       <div className="px-0 xs:px-2 sm:px-4 pt-2 sm:pt-6">
-        <CompleteHeroSection />
+        <section className="relative w-full min-h-[85vh] bg-white overflow-hidden flex items-center">
+          <div className="container mx-auto px-4 h-full py-12">
+            <div className="grid md:grid-cols-2 gap-12 items-center h-full">
+              <div className="space-y-8 animate-in fade-in slide-in-from-left-6 duration-1000 ml-10 mb-10">
+                <div className="space-y-6">
+                  <h1 className="text-4xl md:text-6xl font-bold leading-tight text-gray">
+                    <span className="word-animation">
+                      <span className="word text-darkblue">Empowering</span>{" "}
+                      <span className="word text-lightblue">Lives</span>{" "}
+                      <span className="word text-darkblue">Through</span>{" "}
+                      <span className="word text-lightblue">Service</span>
+                    </span>
+                  </h1>
+                  <div className="typing-animation-container">
+                    <p className="text-xl text-gray leading-relaxed typing-text">Dedicated to providing education and healthcare services.</p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link href="/donate">
+                      <button className="bg-[#0D6DB7] text-white px-6 py-3 rounded-md shadow hover:opacity-95">Donate Now</button>
+                    </Link>
+                    <Link href="/apply">
+                      <button className="border-2 border-[#0D6DB7] text-[#0D6DB7] px-6 py-3 rounded-md shadow hover:bg-[#0D6DB7] hover:text-white transition">Get Help</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Hero Image in Circle + Animated Circles */}
+              <div className="relative flex justify-center items-center h-full">
+                
+                <div className="relative z-10 w-[360px] h-[360px] md:w-[460px] md:h-[460px]">
+                  <div className="hero-circle-lift absolute left-0 bottom-0 w-72 h-72 rounded-full bg-white border-2 border-[#0D6DB7] flex items-center justify-center shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-md">
+                    <img src="/hero-back.png" alt="Hero Main" className="rounded-full object-cover object-center w-full h-full" />
+                  </div>
+                  <div className="hero-circle-lift absolute left-[80px] top-4 w-36 h-36 rounded-full bg-white border-2 border-[#8DC63F] flex items-center justify-center shadow-md transition-transform duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-md">
+                    <img src="/hero-back.png" alt="Hero 2" className="rounded-full object-cover object-center w-full h-full" />
+                  </div>
+                  <div className="hero-circle-lift absolute left-[270px] top-24 w-48 h-48 rounded-full bg-white border-2 border-[#0D6DB7] flex items-center justify-center shadow-xl transition-transform duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-md">
+                    <img src="/hero-back.png" alt="Hero 3" className="rounded-full object-cover object-center w-full h-full" />
+                  </div>
+                  <div className="hero-circle-lift group absolute right-[35px] top-[350px] w-36 h-36 rounded-full bg-white border-2 border-lightblue flex items-center justify-center cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-md">
+                    <img src="/hero-back.png" alt="Hero 4" className="rounded-full object-cover object-center w-full h-full" />
+                  </div>
+                </div>
+
+                <style jsx>{`
+                  @keyframes circleMove1 { 0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)} }
+                  .animate-circle-move1{animation:circleMove1 6s ease-in-out infinite}
+                  @keyframes circleMove2 { 0%{transform:translateX(0)}50%{transform:translateX(10px)}100%{transform:translateX(0)} }
+                  .animate-circle-move2{animation:circleMove2 7s ease-in-out infinite}
+                  @keyframes circleFloat {0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+                  .animate-circle-float{animation:circleFloat 8s ease-in-out infinite}
+
+                  .word-animation .word{display:inline-block;opacity:0;transform:translateY(20px);animation:wordFadeIn .8s ease-out forwards}
+                  .word-animation .word:nth-child(1){animation-delay:.1s}.word-animation .word:nth-child(3){animation-delay:.2s}.word-animation .word:nth-child(5){animation-delay:.3s}.word-animation .word:nth-child(7){animation-delay:.4s}
+                  @keyframes wordFadeIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+
+                  .typing-animation-container{width:100%;overflow:hidden}
+                  .typing-text{overflow:hidden;border-right:2px solid #0D6DB7;white-space:nowrap;display:inline-block;width:0;animation:typing 4s steps(50) infinite alternate-reverse}
+                  @keyframes typing{0%{width:0}100%{width:100%}}
+                `}</style>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* Requests Feed Section - Vertically scrollable, social style */}
@@ -324,6 +389,8 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      <RecentNews />
 
 
       {/* How It Works */}
