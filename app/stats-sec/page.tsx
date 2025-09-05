@@ -91,7 +91,7 @@ export default function DashboardAnalytics() {
     return (
       <div className="flex flex-col items-center justify-center py-12">
         <div className="w-10 h-10 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
-        <p className="mt-4 text-blue-600 font-medium animate-pulse">Loading stats...</p>
+        <p className="mt-4 text-lightblue font-medium animate-pulse">Loading stats...</p>
       </div>
     );
 
@@ -137,9 +137,9 @@ export default function DashboardAnalytics() {
         {/* Intro Section */}
         <section className="max-w-4xl mx-auto px-4 mb-10">
           <div className="bg-white/80 rounded-2xl shadow p-6 text-center">
-            <h2 className="text-2xl font-bold text-blue-900 mb-2">Welcome to the Welfare Platform Analytics</h2>
+            <h2 className="text-2xl font-bold text-darkblue mb-2">Welcome to the Welfare Platform Analytics</h2>
             <p className="text-gray-700 text-lg mb-2">Track every request, every user, and every impact—live and in detail. Our dashboard empowers you to see the real difference your organization is making, with beautiful charts and up-to-the-minute data.</p>
-            <p className="text-blue-700 font-semibold">All stats update automatically. No refresh needed!</p>
+            <p className="text-darkblue font-semibold">All stats update automatically. No refresh needed!</p>
           </div>
         </section>
         {/* Key Metrics Section */}
@@ -160,8 +160,8 @@ export default function DashboardAnalytics() {
             }].map((m, idx) => (
               <div key={idx} className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/50 via-blue-500/40 to-indigo-600/50 shadow-[0_10px_30px_rgba(17,24,39,0.08)] hover:shadow-[0_20px_40px_rgba(17,24,39,0.12)] transition-shadow">
                 <div className="rounded-2xl bg-white/80 backdrop-blur-xl p-5">
-                  <div className="text-xs uppercase tracking-wide text-blue-700/80 mb-1">{m.label}</div>
-                  <div className="text-3xl font-extrabold text-blue-900">{m.value}</div>
+                  <div className="text-xs uppercase tracking-wide text-darkblue/80 mb-1">{m.label}</div>
+                  <div className="text-3xl font-extrabold text-darkblue">{m.value}</div>
                   <div className="mt-3 h-[3px] w-0 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-full transition-all duration-700"></div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function DashboardAnalytics() {
           {/* Day-wise Request Type Distribution (Stacked Bar) */}
           <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/40 via-blue-500/30 to-indigo-600/40 shadow hover:shadow-lg transition-shadow">
             <div className="rounded-2xl bg-white/80 backdrop-blur p-4">
-              <h2 className="text-lg font-semibold mb-4 text-center text-blue-900">Request Type Distribution (Day-wise)</h2>
+              <h2 className="text-lg font-semibold mb-4 text-center text-darkblue">Request Type Distribution (Day-wise)</h2>
               <DayResponsiveContainer width="100%" height={250}>
                 <DayBarChart data={dailyByType.map(row => {
                   // flatten types array to keys
@@ -196,7 +196,7 @@ export default function DashboardAnalytics() {
           {/* Day-wise Requests Bar Chart */}
           <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/40 via-blue-500/30 to-indigo-600/40 shadow hover:shadow-lg transition-shadow">
             <div className="rounded-2xl bg-white/80 backdrop-blur p-4">
-              <h2 className="text-lg font-semibold mb-4 text-center text-blue-900">Requests per Day (Last 14 Days)</h2>
+              <h2 className="text-lg font-semibold mb-4 text-center text-darkblue">Requests per Day (Last 14 Days)</h2>
               <DayResponsiveContainer width="100%" height={250}>
                 <DayBarChart data={dailyRequests}>
                   <DayXAxis dataKey="date" tick={{ fontSize: 12 }} />
@@ -210,7 +210,7 @@ export default function DashboardAnalytics() {
           {/* Day-wise User Signups Line Chart */}
           <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/40 via-blue-500/30 to-indigo-600/40 shadow hover:shadow-lg transition-shadow">
             <div className="rounded-2xl bg-white/80 backdrop-blur p-4">
-              <h2 className="text-lg font-semibold mb-4 text-center text-blue-900">User Signups per Day</h2>
+              <h2 className="text-lg font-semibold mb-4 text-center text-darkblue">User Signups per Day</h2>
               <DayResponsiveContainer width="100%" height={250}>
                 <SignupLineChart data={signupsDaily}>
                   <DayXAxis dataKey="date" tick={{ fontSize: 12 }} />
@@ -232,7 +232,7 @@ export default function DashboardAnalytics() {
                 key={cat}
                 className={`px-4 py-2 rounded-full transition shadow-sm hover:shadow ${selectedCategory === cat
                   ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white'
-                  : 'bg-white/80 text-blue-900 border border-blue-100'
+                  : 'bg-white/80 text-darkblue border border-blue-100'
                   }`}
                 onClick={() => setSelectedCategory(cat)}
               >
@@ -241,7 +241,7 @@ export default function DashboardAnalytics() {
             ))}
           </div>
 
-          <h3 className="text-2xl font-bold mb-6 text-center text-blue-900 tracking-wide drop-shadow">{selectedCategory} Requests</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center text-darkblue tracking-wide drop-shadow">{selectedCategory} Requests</h3>
           {filteredRequests.length === 0 ? (
             <p className="text-center text-gray-500">No requests found for this category.</p>
           ) : (
@@ -260,8 +260,8 @@ export default function DashboardAnalytics() {
                         <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_0_4px_rgba(34,211,238,0.25)] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-lg font-extrabold text-blue-900 truncate flex items-center gap-2">
-                          <Users className="inline w-5 h-5 text-blue-400" /> {req.full_name}
+                        <h4 className="text-lg font-extrabold text-darkblue truncate flex items-center gap-2">
+                          <Users className="inline w-5 h-5 text-lightblue" /> {req.full_name}
                         </h4>
                         <div className="flex flex-wrap gap-2 text-xs text-gray-500 mt-1 mb-1">
                           <span className="flex items-center gap-1"><MapPin className="w-4 h-4" />{req.user?.city || 'No city'}</span>
@@ -269,7 +269,7 @@ export default function DashboardAnalytics() {
                           {req.material && <span className="flex items-center gap-1"><BookOpen className="w-4 h-4" />{req.material}</span>}
                         </div>
                         <p className="text-sm text-gray-600 truncate">
-                          {req.user?.address || 'No address'} <span className="font-semibold text-blue-700">– PKR {req.monthly_income?.toLocaleString?.() ?? req.monthly_income}</span>
+                          {req.user?.address || 'No address'} <span className="font-semibold text-darkblue">– PKR {req.monthly_income?.toLocaleString?.() ?? req.monthly_income}</span>
                         </p>
                         <span
                           className={`inline-block mt-2 text-xs px-3 py-1 rounded-full font-semibold shadow ${statusColors[req.status?.toLowerCase?.() || 'pending']
@@ -306,11 +306,11 @@ export default function DashboardAnalytics() {
           {/* Tile 1 */}
           <div className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/60 via-blue-500/40 to-indigo-600/60 shadow-[0_10px_30px_rgba(17,24,39,0.08)] hover:shadow-[0_20px_40px_rgba(17,24,39,0.12)] transition-shadow">
             <div className="rounded-2xl bg-white/80 backdrop-blur-xl p-6 h-full flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-lightblue flex items-center justify-center shadow-sm">
                 <Users className="w-6 h-6" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-lg text-blue-900">Thousands of Users</h3>
+                <h3 className="font-semibold text-lg text-darkblue">Thousands of Users</h3>
                 <p className="text-gray-700 text-sm mt-1">Join a growing community making a real impact every day.</p>
                 <div className="mt-3 h-[3px] w-0 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-full transition-all duration-700"></div>
               </div>

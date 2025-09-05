@@ -13,6 +13,16 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+
+				'darkblue': '#1B0073',
+        'lightblue': '#00bfe6',
+        'gray': '#36454f',
+        'webblack': '#00171f',
+        'bglightblue': '#e6faff',
+
+
+
+
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

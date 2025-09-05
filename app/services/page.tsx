@@ -1,8 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import {
   Heart,
   TrendingUp,
@@ -221,7 +219,7 @@ export default function ServicesPage() {
 
   const getColorClasses = (color: string) => {
     const colorMap = {
-      blue: "from-blue-500 to-blue-600 bg-blue-100 text-blue-800",
+      blue: "from-blue-500 to-blue-600 bg-blue-100 text-darkblue",
       green: "from-green-500 to-green-600 bg-green-100 text-green-800",
       purple: "from-purple-500 to-purple-600 bg-purple-100 text-purple-800",
       red: "from-red-500 to-red-600 bg-red-100 text-red-800",
@@ -256,8 +254,8 @@ export default function ServicesPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">Comprehensive</span>{" "}
-            <span className="text-[#00A5E0]">Welfare Programs</span>
+            <span className="text-darkblue">Comprehensive</span>{" "}
+            <span className="text-lightblue">Welfare Programs</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -285,7 +283,7 @@ export default function ServicesPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-2  text-[#1B0073] hover:bg-[#00A5E0] hover:text-white"
+              className="border-2  text-darkblue hover:bg-[#00A5E0] hover:text-white"
               asChild
             >
               <Link href="/how-it-works">How It Works</Link>
@@ -300,12 +298,9 @@ export default function ServicesPage() {
       <section className="py-10 px-2 sm:py-16 sm:px-4">
         <div className="container mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              All Walfare <span className="text-[#00A5E0]"> Programs</span>
+            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              All Welfare <span className="text-lightblue"> Programs</span>
             </h2>
-            {/* <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">
-              All Welfare Programs
-            </h2> */}
             <p className="text-base xs:text-lg sm:text-xl text-gray-600">
               Choose the program that best fits your needs
             </p>
@@ -338,7 +333,7 @@ export default function ServicesPage() {
                       <service.icon className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
                     </div>
                     <div className="text-left xs:text-right mt-2 xs:mt-0">
-                      <span className="inline-block text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-medium mb-2">
+                      <span className="inline-block text-xs px-3 py-1 rounded-full bg-blue-100 text-darkblue font-medium mb-2">
                         {service.beneficiaries} helped
                       </span>
                       <div className="text-xs sm:text-sm text-gray-600">
@@ -348,7 +343,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Title + Description */}
-                  <h3 className="text-gray-900 text-lg sm:text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-gray-900 text-lg sm:text-xl font-semibold mb-2 group-hover:text-lightblue transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 text-sm sm:text-base mb-4">
@@ -397,8 +392,8 @@ export default function ServicesPage() {
         <div className="container mx-auto relative z-10">
           {/* Section Heading */}
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              How to  <span className="text-[#00A5E0]">  Apply</span>
+            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              How to  <span className="text-lightblue">  Apply</span>
             </h2>
             <p className="text-base xs:text-lg sm:text-xl text-gray-900">
               Simple steps to access our services
@@ -426,7 +421,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-semibold mb-2 text-[#1B0073] text-2xl sm:text-base mt-6">
+                  <h3 className="font-semibold mb-2 text-darkblue text-2xl sm:text-base mt-6">
                     {item.title}
                   </h3>
 
