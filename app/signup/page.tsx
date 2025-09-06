@@ -155,8 +155,8 @@ export default function SignupPage() {
           <div className="w-16 h-16 bg-gradient-to-r from-[#1B0073] to-[#00A5E0] hover:opacity-90 text-white rounded-full flex items-center justify-center mx-auto mb-4">
             <Heart className="h-8 w-8 text-white" />
           </div>
-          <h2 className="mb-2 sm:mb-6 text-xl sm:text-2xl lg:text-4xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-        Join Al Khair  <span className="text-[#00A5E0]">  Welfare</span>
+          <h2 className="mb-2 sm:mb-6 text-xl sm:text-2xl lg:text-4xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+        Join Al Khair  <span className="text-lightblue">  Welfare</span>
           </h2>
           <p className="text-gray-600">Create your account to access our services</p>
         </div>
@@ -180,7 +180,7 @@ export default function SignupPage() {
 
         <Card className="border-0 shadow-lg">
           <CardHeader>
-            <CardTitle className="text-center text-[#1B0073]">Create Account</CardTitle>
+            <CardTitle className="text-center text-darkblue">Create Account</CardTitle>
             <CardDescription className="text-center">Fill in your information to get started</CardDescription>
           </CardHeader>
           <CardContent>
@@ -196,10 +196,10 @@ export default function SignupPage() {
               {/* Voice agent UI for the active field */}
               {voiceAgent.currentField && (
                 <div className="mb-6 flex flex-col items-center">
-                  <div className="mt-3 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-blue-900 font-medium shadow animate-fadeIn flex flex-col items-start gap-2">
+                  <div className="mt-3 px-4 py-2 rounded-lg bg-blue-50 border border-blue-200 text-darkblue font-medium shadow animate-fadeIn flex flex-col items-start gap-2">
                     <div><span className="font-semibold">Speak:</span> {voiceAgent.currentField.label}</div>
                     {voiceAgent.transcript && (
-                      <div className="text-xs text-gray-700 italic mt-1">You said: <span className="font-bold text-blue-700">"{voiceAgent.transcript}"</span></div>
+                      <div className="text-xs text-gray-700 italic mt-1">You said: <span className="font-bold text-darkblue">"{voiceAgent.transcript}"</span></div>
                     )}
                     <Button type="button" size="sm" className="mt-2" variant="secondary" onClick={voiceAgent.handleResult} disabled={!voiceAgent.transcript}>
                       Set Field
@@ -237,7 +237,7 @@ export default function SignupPage() {
                     <Button type="button" size="icon" variant="secondary" aria-label="Voice fill name" onClick={() => voiceAgent.startFieldAgent("name")}
                       disabled={(!!voiceAgent.currentField && voiceAgent.currentField.name !== "name")}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-lightblue">
                         <path d="M12 18c1.66 0 3-1.34 3-3V7a3 3 0 10-6 0v8c0 1.66 1.34 3 3 3zm5-3a1 1 0 112 0c0 3.07-2.13 5.64-5 6.32V22a1 1 0 11-2 0v-0.68C7.13 20.64 5 18.07 5 15a1 1 0 112 0c0 2.21 1.79 4 4 4s4-1.79 4-4z" />
                       </svg>
                     </Button>
@@ -262,7 +262,7 @@ export default function SignupPage() {
                     <Button type="button" size="icon" variant="secondary" aria-label="Voice fill cnic" onClick={() => voiceAgent.startFieldAgent("cnic")}
                       disabled={(!!voiceAgent.currentField && voiceAgent.currentField.name !== "cnic")}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-lightblue">
                         <path d="M12 18c1.66 0 3-1.34 3-3V7a3 3 0 10-6 0v8c0 1.66 1.34 3 3 3zm5-3a1 1 0 112 0c0 3.07-2.13 5.64-5 6.32V22a1 1 0 11-2 0v-0.68C7.13 20.64 5 18.07 5 15a1 1 0 112 0c0 2.21 1.79 4 4 4s4-1.79 4-4z" />
                       </svg>
                     </Button>
@@ -286,7 +286,7 @@ export default function SignupPage() {
                     <Button type="button" size="icon" variant="secondary" aria-label="Voice fill email" onClick={() => voiceAgent.startFieldAgent("email")}
                       disabled={(!!voiceAgent.currentField && voiceAgent.currentField.name !== "email")}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-lightblue">
                         <path d="M12 18c1.66 0 3-1.34 3-3V7a3 3 0 10-6 0v8c0 1.66 1.34 3 3 3zm5-3a1 1 0 112 0c0 3.07-2.13 5.64-5 6.32V22a1 1 0 11-2 0v-0.68C7.13 20.64 5 18.07 5 15a1 1 0 112 0c0 2.21 1.79 4 4 4s4-1.79 4-4z" />
                       </svg>
                     </Button>
@@ -310,7 +310,7 @@ export default function SignupPage() {
                     <Button type="button" size="icon" variant="secondary" aria-label="Voice fill phone" onClick={() => voiceAgent.startFieldAgent("phone")}
                       disabled={(!!voiceAgent.currentField && voiceAgent.currentField.name !== "phone")}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-lightblue">
                         <path d="M12 18c1.66 0 3-1.34 3-3V7a3 3 0 10-6 0v8c0 1.66 1.34 3 3 3zm5-3a1 1 0 112 0c0 3.07-2.13 5.64-5 6.32V22a1 1 0 11-2 0v-0.68C7.13 20.64 5 18.07 5 15a1 1 0 112 0c0 2.21 1.79 4 4 4s4-1.79 4-4z" />
                       </svg>
                     </Button>
@@ -334,7 +334,7 @@ export default function SignupPage() {
                     <Button type="button" size="icon" variant="secondary" aria-label="Voice fill city" onClick={() => voiceAgent.startFieldAgent("city")}
                       disabled={(!!voiceAgent.currentField && voiceAgent.currentField.name !== "city")}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-lightblue">
                         <path d="M12 18c1.66 0 3-1.34 3-3V7a3 3 0 10-6 0v8c0 1.66 1.34 3 3 3zm5-3a1 1 0 112 0c0 3.07-2.13 5.64-5 6.32V22a1 1 0 11-2 0v-0.68C7.13 20.64 5 18.07 5 15a1 1 0 112 0c0 2.21 1.79 4 4 4s4-1.79 4-4z" />
                       </svg>
                     </Button>
@@ -358,7 +358,7 @@ export default function SignupPage() {
                     <Button type="button" size="icon" variant="secondary" aria-label="Voice fill address" onClick={() => voiceAgent.startFieldAgent("address")}
                       disabled={(!!voiceAgent.currentField && voiceAgent.currentField.name !== "address")}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-lightblue">
                         <path d="M12 18c1.66 0 3-1.34 3-3V7a3 3 0 10-6 0v8c0 1.66 1.34 3 3 3zm5-3a1 1 0 112 0c0 3.07-2.13 5.64-5 6.32V22a1 1 0 11-2 0v-0.68C7.13 20.64 5 18.07 5 15a1 1 0 112 0c0 2.21 1.79 4 4 4s4-1.79 4-4z" />
                       </svg>
                     </Button>

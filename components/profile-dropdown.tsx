@@ -75,7 +75,7 @@ export function ProfileDropdown() {
             {/* Details Section */}
             <div className="flex flex-col pt-14 pb-6 px-4 w-full">
               <div className="font-bold text-2xl text-gray-900 mb-1 flex items-center gap-2">
-                <UserCircle className="w-6 h-6 text-[#1B0073]" />
+                <UserCircle className="w-6 h-6 text-darkblue" />
                 {user.fullName}
               </div>
               <div className="text-sm text-gray-500 mb-2 capitalize flex items-center gap-2">
@@ -85,7 +85,7 @@ export function ProfileDropdown() {
               <div className="w-full border-b border-gray-200 my-2"></div>
               <div className="w-full flex flex-col gap-4">
                 <div className="flex items-center gap-3 text-base text-gray-700">
-                  <IdCard className="w-5 h-5 text-[#00A5E0]" />
+                  <IdCard className="w-5 h-5 text-lightblue" />
                   <div>
                     <div className="text-xs text-gray-500">CNIC Number</div>
                     <div className="font-mono font-semibold tracking-wider">{cnic}</div>
@@ -122,7 +122,7 @@ export function ProfileDropdown() {
               {user.role === "DONOR" && (
                 <Link
                   href="/dashboard/donor/profile"
-                  className="mt-6 w-full bg-white border border-[#e6e6f0] text-[#1B0073] py-2 rounded-lg font-semibold hover:bg-[#f6f7fb] transition text-lg shadow text-center block"
+                  className="mt-6 w-full bg-white border border-[#e6e6f0] text-darkblue py-2 rounded-lg font-semibold hover:bg-[#f6f7fb] transition text-lg shadow text-center block"
                   onClick={() => setOpen(false)}
                 >
                   View Profile

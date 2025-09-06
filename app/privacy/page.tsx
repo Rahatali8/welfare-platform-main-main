@@ -91,8 +91,8 @@ export default function PrivacyPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">Your Privacy</span>{" "}
-            <span className="text-[#00A5E0]"> Matters</span>
+            <span className="text-darkblue">Your Privacy</span>{" "}
+            <span className="text-lightblue"> Matters</span>
           </motion.h1>
 
           <motion.p
@@ -117,11 +117,11 @@ export default function PrivacyPage() {
           {/* Intro */}
           <Card className="border-0 shadow-xl rounded-2xl overflow-hidden mb-10 bg-white">
             <CardHeader className="bg-gradient-to-r from-[#1B0073]/10 to-[#00A5E0]/10">
-              <CardTitle className="text-2xl text-blue-900 font-bold">Introduction</CardTitle>
+              <CardTitle className="text-2xl text-darkblue font-bold">Introduction</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <p className="text-gray-700 leading-relaxed">
-                At <span className="font-semibold text-blue-800">Welfare Platform</span>, we understand that your
+                At <span className="font-semibold text-darkblue">Welfare Platform</span>, we understand that your
                 privacy is fundamental to your trust in our services. This Privacy Policy explains how we collect, use,
                 protect, and share your personal information when you use our welfare assistance platform. By using our
                 services, you agree to the collection and use of information in accordance with this policy.
@@ -137,8 +137,8 @@ export default function PrivacyPage() {
                 className="border-0 shadow-lg rounded-2xl hover:shadow-2xl transition-shadow duration-300 bg-white"
               >
                 <CardHeader className="flex items-center space-x-3">
-                  <section.icon className="h-7 w-7 text-blue-600" />
-                  <CardTitle className="text-xl text-blue-900 font-semibold">{section.title}</CardTitle>
+                  <section.icon className="h-7 w-7 text-lightblue" />
+                  <CardTitle className="text-xl text-darkblue font-semibold">{section.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="px-6 pb-6">
                   <ul className="space-y-3">
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <Card className="border-0 shadow-lg rounded-2xl bg-white hover:shadow-2xl transition">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900 font-semibold">Data Retention</CardTitle>
+                <CardTitle className="text-xl text-darkblue font-semibold">Data Retention</CardTitle>
               </CardHeader>
               <CardContent className="text-gray-700 space-y-2">
                 <p>
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
 
             <Card className="border-0 shadow-lg rounded-2xl bg-white hover:shadow-2xl transition">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900 font-semibold">Cookies & Tracking</CardTitle>
+                <CardTitle className="text-xl text-darkblue font-semibold">Cookies & Tracking</CardTitle>
               </CardHeader>
               <CardContent className="text-gray-700 space-y-2">
                 <p>
@@ -199,7 +199,7 @@ export default function PrivacyPage() {
           {/* Contact */}
           <Card className="border-0 shadow-lg rounded-2xl mt-12 bg-gradient-to-r from-white to-blue-50">
             <CardHeader>
-              <CardTitle className="text-xl text-blue-900 font-semibold">Contact Us About Privacy</CardTitle>
+              <CardTitle className="text-xl text-darkblue font-semibold">Contact Us About Privacy</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 mb-6">
@@ -209,11 +209,11 @@ export default function PrivacyPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Mail className="h-5 w-5 text-blue-600 mr-3" />
+                    <Mail className="h-5 w-5 text-lightblue mr-3" />
                     <span className="text-gray-700">privacy@welfareplatform.org</span>
                   </div>
                   <div className="flex items-center">
-                    <Phone className="h-5 w-5 text-blue-600 mr-3" />
+                    <Phone className="h-5 w-5 text-lightblue mr-3" />
                     <span className="text-gray-700">+92 21 1234 5678</span>
                   </div>
                 </div>
@@ -229,9 +229,9 @@ export default function PrivacyPage() {
           {/* Updates */}
           <Card className="border-0 shadow-lg rounded-2xl mt-10 bg-blue-50">
             <CardContent className="flex items-start space-x-4 p-6">
-              <Shield className="h-7 w-7 text-blue-600 mt-1" />
+              <Shield className="h-7 w-7 text-lightblue mt-1" />
               <div>
-                <h3 className="font-semibold text-blue-900 text-lg">Policy Updates</h3>
+                <h3 className="font-semibold text-darkblue text-lg">Policy Updates</h3>
                 <p className="text-gray-700 mt-1 text-sm leading-relaxed">
                   We may update this Privacy Policy from time to time. Any changes will be posted here with the updated
                   date. We recommend checking back periodically to stay informed.

@@ -105,8 +105,8 @@ export default function AboutPage() {
 
             {/* Left Side Text */}
             <div>
-              <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-                Our Core <span className="text-[#00A5E0]">Mission</span>
+              <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+                Our Core <span className="text-lightblue">Mission</span>
               </h2>
               <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                 To provide comprehensive welfare services that empower individuals and families to achieve
@@ -116,7 +116,7 @@ export default function AboutPage() {
               <div className="space-y-3 sm:space-y-4">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Target className="h-4 w-4 text-blue-600" />
+                    <Target className="h-4 w-4 text-lightblue" />
                   </div>
                   <span className="text-gray-700 text-sm sm:text-base">Holistic approach to welfare</span>
                 </div>
@@ -200,8 +200,8 @@ export default function AboutPage() {
       <section className="py-10 px-2 sm:py-16 sm:px-4 bg-gray-50 m-2 sm:m-5">
         <div className="container mx-auto">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Our Core <span className="text-[#00A5E0]">Values</span>
+            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Our Core <span className="text-lightblue">Values</span>
             </h2>
             <p className="text-base sm:text-xl text-gray-600">The principles that guide everything we do</p>
           </div>
@@ -221,11 +221,11 @@ export default function AboutPage() {
                 >
                   <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 
             rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center shadow-sm">
-                    <value.icon className="h-7 w-7 sm:h-8 sm:w-8 text-[#00A5E0]" />
+                    <value.icon className="h-7 w-7 sm:h-8 sm:w-8 text-lightblue" />
                   </div>
 
                   <div>
-                    <CardTitle className="text-lg sm:text-2xl font-extrabold tracking-tight text-blue-900 mb-2">
+                    <CardTitle className="text-lg sm:text-2xl font-extrabold tracking-tight text-darkblue mb-2">
                       {value.title}
                     </CardTitle>
                     <CardContent>
@@ -245,7 +245,7 @@ export default function AboutPage() {
       <section className="py-20 px-4 bg-gradient-to-b from-blue-50 via-white to-cyan-50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="mb-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#1B0073] drop-shadow-2xl">Our <span className="text-[#00A5E0]">Journey</span></h2>
+            <h2 className="mb-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-darkblue drop-shadow-2xl">Our <span className="text-lightblue">Journey</span></h2>
             <p className="text-2xl text-gray-700">A timeline of our growth, innovation, and impact</p>
           </div>
           <div className="relative w-full max-w-6xl mx-auto">
@@ -256,7 +256,7 @@ export default function AboutPage() {
                   <span className="text-white text-2xl font-extrabold drop-shadow-lg">{milestones[0].year}</span>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-blue-100 w-full max-w-xs">
-                  <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-darkblue mb-2 flex items-center gap-2">
                     <span className="inline-block w-2 h-2 rounded-full bg-blue-400 mr-2"></span>
                     {milestones[0].title}
                   </h3>
@@ -289,7 +289,7 @@ export default function AboutPage() {
                           <span className="text-white text-2xl font-extrabold drop-shadow-lg">{milestone.year}</span>
                         </div>
                         <div className="bg-white rounded-2xl shadow-xl p-6 border border-blue-100 w-full max-w-xs">
-                          <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
+                          <h3 className="text-xl font-bold text-darkblue mb-2 flex items-center gap-2">
                             <span className="inline-block w-2 h-2 rounded-full bg-blue-400 mr-2"></span>
                             {milestone.title}
                           </h3>
@@ -308,7 +308,7 @@ export default function AboutPage() {
                   <span className="text-white text-2xl font-extrabold drop-shadow-lg">{milestones[milestones.length - 1].year}</span>
                 </div>
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-blue-100 w-full max-w-xs">
-                  <h3 className="text-xl font-bold text-blue-900 mb-2 flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-darkblue mb-2 flex items-center gap-2">
                     <span className="inline-block w-2 h-2 rounded-full bg-blue-400 mr-2"></span>
                     {milestones[milestones.length - 1].title}
                   </h3>
@@ -324,8 +324,8 @@ export default function AboutPage() {
       <section className="py-16 px-4 bg-gray-50 m-5">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="mb-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Meet Our <span className="text-[#00A5E0]">Visionary Leaders</span>
+            <h2 className="mb-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Meet Our <span className="text-lightblue">Visionary Leaders</span>
             </h2>
             <p className="text-xl text-gray-600">
               Dedicated professionals working to make a difference
@@ -355,10 +355,10 @@ export default function AboutPage() {
                       alt={member.name}
                       className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                     />
-                    <CardTitle className="text-2xl font-extrabold tracking-tight text-blue-900 mb-1">
+                    <CardTitle className="text-2xl font-extrabold tracking-tight text-darkblue mb-1">
                       {member.name}
                     </CardTitle>
-                    <CardDescription className="text-blue-600 font-medium">
+                    <CardDescription className="text-lightblue font-medium">
                       {member.role}
                     </CardDescription>
                   </div>
@@ -378,8 +378,8 @@ export default function AboutPage() {
       <section className="py-16 px-4 bg-gray-50 m-5">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="mb-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Our Impact in <span className="text-[#00A5E0]">Numbers</span>
+            <h2 className="mb-6 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Our Impact in <span className="text-lightblue">Numbers</span>
             </h2>
             <p className="text-xl text-gray-600">
               Measurable results of our commitment to social welfare
@@ -398,7 +398,7 @@ export default function AboutPage() {
           transition-transform duration-300 group-hover:-translate-y-1 
           group-hover:scale-[1.01] ring-1 ring-transparent 
           group-hover:ring-blue-200/60">
-                <div className="text-4xl font-extrabold text-blue-600 mb-2">500+</div>
+                <div className="text-4xl font-extrabold text-lightblue mb-2">500+</div>
                 <p className="text-gray-600 font-medium">
                   Families Helped By Us in all over Pakistan
                 </p>

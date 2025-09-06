@@ -95,7 +95,7 @@ export default function LoginPage() {
           {/* Card */}
           <Card className="rounded-2xl shadow-xl border border-gray-100 backdrop-blur bg-white/90">
             <CardHeader>
-              <CardTitle className="text-center text-xl text-blue-700">Sign In</CardTitle>
+              <CardTitle className="text-center text-xl text-darkblue">Sign In</CardTitle>
               <CardDescription className="text-center text-gray-500">
                 Access your dashboard And Get Assistance
               </CardDescription>
@@ -146,7 +146,7 @@ export default function LoginPage() {
 
                 {/* Forgot password */}
                 <div className="flex items-center justify-end">
-                  <Link href="/forgot-password" className="text-sm text-blue-700 hover:underline">
+                  <Link href="/forgot-password" className="text-sm text-darkblue hover:underline">
                     Forgot password?
                   </Link>
                 </div>
@@ -171,7 +171,7 @@ export default function LoginPage() {
               {/* Signup link */}
               <div className="mt-6 text-center text-gray-600">
                 Don&apos;t have an account? {" "}
-                <Link href="/signup" className="text-blue-700 hover:underline font-medium">
+                <Link href="/signup" className="text-darkblue hover:underline font-medium">
                   Sign up here
                 </Link>
               </div>

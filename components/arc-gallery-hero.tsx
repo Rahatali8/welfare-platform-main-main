@@ -208,8 +208,8 @@ const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
                 style={{ marginTop: `-${dimensions.radius * 0.6}px` }}
             >
                 <div className="text-center max-w-2xl px-6 animate-softPulse">
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-                        Empowering Lives Through <span className="text-[#00A5E0]">Support and Skills</span>
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+                        Empowering Lives Through <span className="text-lightblue">Support and Skills</span>
                     </h1>
                 </div>
             </div>

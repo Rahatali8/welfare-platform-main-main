@@ -56,8 +56,8 @@ export default function ContactPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">We're Here</span>{" "}
-            <span className="text-[#00A5E0]"> to Help</span>
+            <span className="text-darkblue">We're Here</span>{" "}
+            <span className="text-lightblue"> to Help</span>
           </motion.h1>
 
           <motion.p
@@ -77,8 +77,8 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Contact Methods Section */}
           <div className="text-center mb-16">
-            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Multiple Ways<span className="text-[#00A5E0]"> to Reach Us</span>
+            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Multiple Ways<span className="text-lightblue"> to Reach Us</span>
             </h2>
             <p className="text-base sm:text-xl text-gray-600">
               Choose the most convenient way to get in touch with our team
@@ -101,16 +101,16 @@ export default function ContactPage() {
                   {/* Icon top-right corner */}
                   <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 
           rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center shadow-sm">
-                    <method.icon className="h-6 w-6 sm:h-7 sm:w-7 text-[#00A5E0]" />
+                    <method.icon className="h-6 w-6 sm:h-7 sm:w-7 text-lightblue" />
                   </div>
 
                   <div>
-                    <CardTitle className="text-lg sm:text-xl font-extrabold tracking-tight text-blue-900 mb-2">
+                    <CardTitle className="text-lg sm:text-xl font-extrabold tracking-tight text-darkblue mb-2">
                       {method.title}
                     </CardTitle>
                     <CardContent className="text-center">
                       <p className="text-gray-600 text-xs sm:text-sm">{method.description}</p>
-                      <p className="font-semibold text-blue-900 mt-2">{method.contact}</p>
+                      <p className="font-semibold text-darkblue mt-2">{method.contact}</p>
                       <Badge variant="secondary" className="text-xs mt-2">{method.availability}</Badge>
                     </CardContent>
                   </div>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                 className="w-full h-full object-cover transition duration-700 group-hover:blur-sm"
               />
               <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-lg p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
-                <h2 className="text-2xl font-bold text-blue-700">We’re Always With You</h2>
+                <h2 className="text-2xl font-bold text-darkblue">We’re Always With You</h2>
                 <p className="mt-2 text-gray-700">
                   Your support means the world to us. Together, we can bring hope, dignity, and care to those who need it the most.
                   Every step you take with us builds a stronger, brighter future.
@@ -141,8 +141,8 @@ export default function ContactPage() {
             {/* Right side Info */}
             <Card className="border-0 shadow-xl rounded-2xl bg-gradient-to-br from-white via-gray-50 to-gray-100">
               <CardHeader className="border-b pb-4">
-                <CardTitle className="flex items-center text-blue-900 text-xl font-bold">
-                  <Clock className="h-6 w-6 mr-2 text-blue-600" />
+                <CardTitle className="flex items-center text-darkblue text-xl font-bold">
+                  <Clock className="h-6 w-6 mr-2 text-lightblue" />
                   Office Hours
                 </CardTitle>
                 <p className="text-sm text-gray-500 mt-1">
@@ -152,12 +152,12 @@ export default function ContactPage() {
               <CardContent className="space-y-4 mt-2">
                 <div className="flex justify-between items-center p-2 rounded-lg hover:bg-gray-100 transition">
                   <span className="text-gray-700 font-medium">Monday – Friday</span>
-                  <span className="font-semibold text-blue-700">9:00 AM – 6:00 PM</span>
+                  <span className="font-semibold text-darkblue">9:00 AM – 6:00 PM</span>
                 </div>
 
                 <div className="flex justify-between items-center p-2 rounded-lg hover:bg-gray-100 transition">
                   <span className="text-gray-700 font-medium">Saturday</span>
-                  <span className="font-semibold text-blue-700">10:00 AM – 4:00 PM</span>
+                  <span className="font-semibold text-darkblue">10:00 AM – 4:00 PM</span>
                 </div>
 
                 <div className="flex justify-between items-center p-2 rounded-lg hover:bg-gray-100 transition">

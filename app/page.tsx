@@ -468,7 +468,7 @@ export default function HomePage() {
         </div>
       </section>
 
-
+      {/* recent news section */}
       <RecentNews />
 
 

@@ -237,8 +237,8 @@ export default function FAQPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">Frequently Asked</span>{" "}
-            <span className="text-[#00A5E0]"> Questions</span>
+            <span className="text-darkblue">Frequently Asked</span>{" "}
+            <span className="text-lightblue"> Questions</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -257,7 +257,7 @@ export default function FAQPage() {
                 placeholder="Search for answers..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 py-4 text-lg bg-white border-white/20 text-white placeholder:text-blue-900"
+                className="pl-12 py-4 text-lg bg-white border-white/20 text-white placeholder:text-darkblue"
               />
             </div>
 
@@ -273,7 +273,7 @@ export default function FAQPage() {
             <div className="lg:col-span-1">
               <Card className="border-0 shadow-lg sticky top-8">
                 <CardHeader>
-                  <CardTitle className="text-[#1B0073]">Categories</CardTitle>
+                  <CardTitle className="text-darkblue">Categories</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {categories.map((category) => (
@@ -298,7 +298,7 @@ export default function FAQPage() {
               {/* Contact Support */}
               <Card className="border-0 shadow-lg mt-6">
                 <CardHeader>
-                  <CardTitle className="text-blue-900">Still Need Help?</CardTitle>
+                  <CardTitle className="text-darkblue">Still Need Help?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4">
@@ -326,7 +326,7 @@ export default function FAQPage() {
                   <Card key={faq.id} className="border-0 shadow-md hover:shadow-lg transition-shadow">
                     <CardHeader className="cursor-pointer" onClick={() => toggleExpanded(faq.id)}>
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-lg text-blue-900 pr-4">{faq.question}</CardTitle>
+                        <CardTitle className="text-lg text-darkblue pr-4">{faq.question}</CardTitle>
                         {expandedItems.includes(faq.id) ? (
                           <ChevronUp className="h-5 w-5 text-gray-400 flex-shrink-0" />
                         ) : (

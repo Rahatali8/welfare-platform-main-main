@@ -24,7 +24,7 @@ const FloatingBot = () => {
               <div className="flex items-center gap-3">
                 <img src="/head-logo.png" alt="Bot Avatar" className="w-12 h-12 rounded-full border-2 border-blue-400 shadow" />
                 <div>
-                  <div className="text-lg font-bold text-blue-700">Welfare AI Assistant</div>
+                  <div className="text-lg font-bold text-darkblue">Welfare AI Assistant</div>
                   <div className="text-xs text-gray-500">Powered by Idara Al-Khair Walfare Society</div>
                 </div>
               </div>

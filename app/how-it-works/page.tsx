@@ -148,8 +148,8 @@ export default function HowItWorksPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">Simple </span>{" "}
-            <span className="text-[#00A5E0]">4-Step Process</span>
+            <span className="text-darkblue">Simple </span>{" "}
+            <span className="text-lightblue">4-Step Process</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -176,7 +176,7 @@ export default function HowItWorksPage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-2  text-[#1B0073] hover:bg-[#00A5E0] hover:text-white"
+              className="border-2  text-darkblue hover:bg-[#00A5E0] hover:text-white"
               asChild
             >
               <Link href="/services">View Services</Link>
@@ -195,8 +195,8 @@ export default function HowItWorksPage() {
                 <div className="h-0.5 bg-gradient-to-l from-blue-600 via-cyan-500 to-transparent"></div>
               </div>
               <div className="text-center px-8">
-                <h2 className="text-5xl font-bold mb-2 text-[#1B0073]">Application <span className="text-[#00A5E0]">Process</span></h2>
-                <p className="text-lg text-[#5F5F5F] max-w-3xl mx-auto">Follow these simple steps to apply for assistance</p>
+                <h2 className="text-5xl font-bold mb-2 text-darkblue">Application <span className="text-lightblue">Process</span></h2>
+                <p className="text-lg text-gray max-w-3xl mx-auto">Follow these simple steps to apply for assistance</p>
               </div>
               <div className="hidden lg:block flex-1 ml-8">
                 <div className="h-0.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-transparent"></div>
@@ -225,7 +225,7 @@ export default function HowItWorksPage() {
                       <div className="w-9 h-9 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white flex items-center justify-center text-xs font-semibold shadow-sm">
                         {step.number}
                       </div>
-                      <div className="w-9 h-9 rounded-lg bg-white/90 backdrop-blur text-blue-700 flex items-center justify-center shadow">
+                      <div className="w-9 h-9 rounded-lg bg-white/90 backdrop-blur text-lightblue flex items-center justify-center shadow">
                         <step.icon className="h-4 w-4" />
                       </div>
                       <h3 className="ml-2 text-white text-base font-semibold drop-shadow line-clamp-1">{step.title}</h3>
@@ -239,15 +239,15 @@ export default function HowItWorksPage() {
                       <p className="text-sm text-gray-700 mb-3 line-clamp-3">{step.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {step.details.slice(0, 2).map((detail, idx) => (
-                          <span key={idx} className="inline-flex items-center gap-1 text-[11px] text-blue-800 bg-blue-50 border border-blue-100 rounded-full px-2 py-1">
-                            <CheckCircle className="h-3 w-3 text-blue-600" />
+                          <span key={idx} className="inline-flex items-center gap-1 text-[11px] text-darkblue bg-blue-50 border border-blue-100 rounded-full px-2 py-1">
+                            <CheckCircle className="h-3 w-3 text-lightblue" />
                             {detail}
                           </span>
                         ))}
                       </div>
                       <div className="flex items-center gap-2 mt-3">
-                        <Clock className="h-4 w-4 text-blue-600" />
-                        <span className="text-xs font-medium text-blue-600">Typical timeframe: {step.timeframe}</span>
+                        <Clock className="h-4 w-4 text-lightblue" />
+                        <span className="text-xs font-medium text-lightblue">Typical timeframe: {step.timeframe}</span>
                       </div>
                     </div>
                   </div>
@@ -273,8 +273,8 @@ export default function HowItWorksPage() {
                 <div className="h-0.5 bg-gradient-to-l from-blue-600 via-cyan-500 to-transparent"></div>
               </div>
               <div className="text-center px-8">
-                <h2 className="text-5xl font-bold mb-2 text-[#1B0073]">Required <span className="text-[#00A5E0]">Documents</span></h2>
-                <p className="text-lg text-[#5F5F5F] max-w-3xl mx-auto">Prepare these documents before starting your application</p>
+                <h2 className="text-5xl font-bold mb-2 text-darkblue">Required <span className="text-lightblue">Documents</span></h2>
+                <p className="text-lg text-gray max-w-3xl mx-auto">Prepare these documents before starting your application</p>
               </div>
               <div className="hidden lg:block flex-1 ml-8">
                 <div className="h-0.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-transparent"></div>
@@ -286,7 +286,7 @@ export default function HowItWorksPage() {
             {requirements.map((req, index) => (
               <div key={index} className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-cyan-400/60 via-blue-500/40 to-indigo-600/60 shadow-[0_10px_30px_rgba(17,24,39,0.08)] hover:shadow-[0_20px_40px_rgba(17,24,39,0.12)] transition-shadow">
                 <div className="rounded-2xl bg-white/80 backdrop-blur-xl p-6 h-full">
-                  <h3 className="text-blue-900 font-semibold text-lg mb-4">{req.category}</h3>
+                  <h3 className="text-darkblue font-semibold text-lg mb-4">{req.category}</h3>
                   <ul className="space-y-3">
                     {req.items.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
@@ -311,8 +311,8 @@ export default function HowItWorksPage() {
                 <div className="h-0.5 bg-gradient-to-l from-blue-600 via-cyan-500 to-transparent"></div>
               </div>
               <div className="text-center px-8">
-                <h2 className="text-5xl font-bold mb-2 text-[#1B0073]">Eligibility <span className="text-[#00A5E0]">Criteria</span></h2>
-                <p className="text-lg text-[#5F5F5F]">Basic requirements to qualify for assistance</p>
+                <h2 className="text-5xl font-bold mb-2 text-darkblue">Eligibility <span className="text-lightblue">Criteria</span></h2>
+                <p className="text-lg text-gray">Basic requirements to qualify for assistance</p>
               </div>
               <div className="hidden lg:block flex-1 ml-8">
                 <div className="h-0.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-transparent"></div>
@@ -327,7 +327,7 @@ export default function HowItWorksPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <criteria.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-blue-900 font-semibold mb-2">{criteria.title}</h3>
+                  <h3 className="text-darkblue font-semibold mb-2">{criteria.title}</h3>
                   <p className="text-gray-600 text-sm">{criteria.description}</p>
                 </div>
               </div>
@@ -371,7 +371,7 @@ export default function HowItWorksPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
                     size="lg"
-                    className="bg-white text-[#1B0073] font-semibold hover:bg-gray-100 shadow-lg transition"
+                    className="bg-white text-darkblue font-semibold hover:bg-gray-100 shadow-lg transition"
                     asChild
                   >
                     <Link href="/signup">Start Your Application</Link>
@@ -379,7 +379,7 @@ export default function HowItWorksPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white text-white hover:bg-white hover:text-[#1B0073] bg-transparent font-semibold shadow transition"
+                    className="border-white text-white hover:bg-white hover:text-darkblue bg-transparent font-semibold shadow transition"
                     asChild
                   >
                     <Link href="/contact">Contact Support</Link>

@@ -58,7 +58,7 @@ export default function DonorLoginPage() {
 
           {/* Hidden Text Card that slides up on hover */}
           <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-lg p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out">
-            <h2 className="text-2xl font-bold text-blue-700">Donor Login</h2>
+            <h2 className="text-2xl font-bold text-darkblue">Donor Login</h2>
             <p className="mt-2 text-gray-700">
               Welcome back to <span className="font-semibold">Himayyat by Idara Al-Khair Welfare</span>.
               Your one act of kindness can bring hope, light, and a new life to someone in need.
@@ -158,7 +158,7 @@ export default function DonorLoginPage() {
 
           <p className="text-center text-sm text-gray-600">
             Don’t have an account?{" "}
-            <Link href="/donor/signup" className="text-blue-700 hover:underline font-semibold">
+            <Link href="/donor/signup" className="text-darkblue hover:underline font-semibold">
               Sign up here
             </Link>
           </p>

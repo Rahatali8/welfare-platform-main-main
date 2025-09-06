@@ -109,12 +109,12 @@ export default function DonorSignupPage() {
         {/* Info Card */}
         <Card className="mb-8 border-0 shadow-md bg-blue-50">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-900 text-lg">
+            <CardTitle className="flex items-center gap-2 text-darkblue text-lg">
               <FileText className="w-5 h-5" />
               Please Read Before Signing Up
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-blue-900 text-sm">
+          <CardContent className="space-y-2 text-darkblue text-sm">
             <p className="flex items-start gap-2">
               <CheckCircle className="text-green-600 w-4 h-4 mt-1" />
               Please ensure your <strong>CNIC</strong> and <strong>Email</strong> are correct. Duplicate entries will be rejected.

@@ -87,8 +87,8 @@ export default function TermsPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">Terms of</span>{" "}
-            <span className="text-[#00A5E0]"> Service</span>
+            <span className="text-darkblue">Terms of</span>{" "}
+            <span className="text-lightblue"> Service</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -101,7 +101,7 @@ export default function TermsPage() {
               Please read these terms carefully before using our welfare platform services. These terms govern your use
               of our services and establish the rights and responsibilities of all parties.
           </motion.p>
-            <p className="text-blue-800">
+            <p className="text-darkblue">
               <Calendar className="inline h-4 w-4 mr-2" />
               Last updated: {lastUpdated}
             </p>
@@ -115,7 +115,7 @@ export default function TermsPage() {
           {/* Introduction */}
           <Card className="border-0 shadow-lg mb-8">
             <CardHeader>
-              <CardTitle className="text-2xl text-blue-900">Introduction</CardTitle>
+              <CardTitle className="text-2xl text-darkblue">Introduction</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 leading-relaxed">
@@ -131,8 +131,8 @@ export default function TermsPage() {
             {sections.map((section, index) => (
               <Card key={section.id} className="border-0 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-xl text-blue-900">
-                    <section.icon className="h-6 w-6 mr-3 text-blue-600" />
+                  <CardTitle className="flex items-center text-xl text-darkblue">
+                    <section.icon className="h-6 w-6 mr-3 text-lightblue" />
                     {section.title}
                   </CardTitle>
                 </CardHeader>
@@ -147,7 +147,7 @@ export default function TermsPage() {
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900">Your Obligations</CardTitle>
+                <CardTitle className="text-xl text-darkblue">Your Obligations</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">As a user of our platform, you agree to the following obligations:</p>
@@ -164,14 +164,14 @@ export default function TermsPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900">Your Rights</CardTitle>
+                <CardTitle className="text-xl text-darkblue">Your Rights</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-4">As a user of our platform, you have the following rights:</p>
                 <ul className="space-y-3">
                   {rights.map((right, index) => (
                     <li key={index} className="flex items-start">
-                      <Shield className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                      <Shield className="h-5 w-5 text-lightblue mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 text-sm">{right}</span>
                     </li>
                   ))}
@@ -184,7 +184,7 @@ export default function TermsPage() {
           <div className="space-y-8 mt-12">
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900">Limitation of Liability</CardTitle>
+                <CardTitle className="text-xl text-darkblue">Limitation of Liability</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
@@ -198,7 +198,7 @@ export default function TermsPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900">Termination</CardTitle>
+                <CardTitle className="text-xl text-darkblue">Termination</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -214,7 +214,7 @@ export default function TermsPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900">Governing Law</CardTitle>
+                <CardTitle className="text-xl text-darkblue">Governing Law</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
@@ -227,7 +227,7 @@ export default function TermsPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-xl text-blue-900">Changes to Terms</CardTitle>
+                <CardTitle className="text-xl text-darkblue">Changes to Terms</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">
@@ -258,7 +258,7 @@ export default function TermsPage() {
           {/* Contact Information */}
           <Card className="border-0 shadow-lg mt-8">
             <CardHeader>
-              <CardTitle className="text-xl text-blue-900">Questions About These Terms</CardTitle>
+              <CardTitle className="text-xl text-darkblue">Questions About These Terms</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600 mb-6">
@@ -268,11 +268,11 @@ export default function TermsPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <div className="flex items-center">
-                    <Mail className="h-5 w-5 text-blue-600 mr-3" />
+                    <Mail className="h-5 w-5 text-lightblue mr-3" />
                     <span className="text-gray-600">legal@welfareplatform.org</span>
                   </div>
                   <div className="flex items-center">
-                    <Phone className="h-5 w-5 text-blue-600 mr-3" />
+                    <Phone className="h-5 w-5 text-lightblue mr-3" />
                     <span className="text-gray-600">+92 21 1234 5678</span>
                   </div>
                 </div>

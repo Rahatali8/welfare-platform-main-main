@@ -91,7 +91,7 @@ const ChatBot = ({ sendIcon }: ChatBotProps) => {
         {loading && (
           <div className="flex justify-start mb-6">
             <div className="bg-white border-2 border-blue-200 px-6 py-4 rounded-[2rem] shadow-xl text-[1rem] flex items-center gap-3 font-semibold tracking-wide animate-pulse">
-              <span className="text-blue-500">Thinking<span className="inline-block">...</span></span>
+              <span className="text-lightblue">Thinking<span className="inline-block">...</span></span>
             </div>
           </div>
         )}

@@ -32,7 +32,7 @@ export default function HelpPage() {
       title: "Getting Started",
       description: "Learn the basics of using our platform",
       icon: BookOpen,
-      color: "bg-blue-100 text-blue-600",
+      color: "bg-blue-100 text-lightblue",
       articles: 12,
     },
     {
@@ -151,8 +151,8 @@ export default function HelpPage() {
             animate={{ scale: [1, 1.03, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span className="text-[#1B0073]">How Can We</span>{" "}
-            <span className="text-[#00A5E0]"> Help You?</span>
+            <span className="text-darkblue">How Can We</span>{" "}
+            <span className="text-lightblue"> Help You?</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -171,7 +171,7 @@ export default function HelpPage() {
               placeholder="Search for answers..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-12 py-4 text-lg bg-white border-white/20 text-white placeholder:text-blue-900"
+              className="pl-12 py-4 text-lg bg-white border-white/20 text-white placeholder:text-darkblue"
             />
           </div>
 
@@ -182,8 +182,8 @@ export default function HelpPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <div className="text-center mb-16">
-            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Quick <span className="text-[#00A5E0]">Help</span>
+            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Quick <span className="text-lightblue">Help</span>
             </h2>
             <p className="text-xl text-gray-600">Get started with these popular help articles</p>
           </div>
@@ -197,11 +197,11 @@ export default function HelpPage() {
             shadow-[0_10px_30px_rgba(17,24,39,0.08)] hover:shadow-[0_20px_40px_rgba(17,24,39,0.12)] transition-shadow"
               >
                 <div className="relative rounded-2xl bg-white/80 backdrop-blur-xl p-6 h-full transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-[1.01] ring-1 ring-transparent group-hover:ring-blue-200/60">
-                  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">{item.title}</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-lightblue">{item.title}</h3>
                   <p className="text-gray-600 text-sm mb-4">{item.description}</p>
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary" className="text-xs">{item.time}</Badge>
-                    <Button variant="ghost" size="sm" asChild className="text-blue-600 hover:text-blue-800">
+                    <Button variant="ghost" size="sm" asChild className="text-lightblue hover:text-darkblue">
                       <Link href={item.link}>
                         Read More <ArrowRight className="h-4 w-4 ml-1" />
                       </Link>
@@ -214,8 +214,8 @@ export default function HelpPage() {
 
           {/* Help Categories */}
           <div className="text-center mb-12">
-            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Browse by<span className="text-[#00A5E0]"> Category</span>
+            <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Browse by<span className="text-lightblue"> Category</span>
             </h2>
             <p className="text-xl text-gray-600">Find detailed information organized by topic</p>
           </div>
@@ -231,10 +231,10 @@ export default function HelpPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <category.icon className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-gray-900 group-hover:text-blue-600">{category.title}</CardTitle>
+                  <CardTitle className="text-xl text-gray-900 group-hover:text-lightblue">{category.title}</CardTitle>
                   <Badge variant="secondary" className="w-fit my-2">{category.articles} articles</Badge>
                   <p className="text-gray-600 mb-4">{category.description}</p>
-                  <Button variant="ghost" className="text-blue-600 hover:text-blue-800 p-0">
+                  <Button variant="ghost" className="text-lightblue hover:text-darkblue p-0">
                     Browse Articles <ArrowRight className="h-4 w-4 ml-1" />
                   </Button>
                 </div>
@@ -244,8 +244,8 @@ export default function HelpPage() {
 
           {/* Support Options */}
           <div className="text-center mb-12">
-            <h2 className="mb-4 sm:mb-6 text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Need Personal <span className="text-[#00A5E0]">Assistance?</span>
+            <h2 className="mb-4 sm:mb-6 text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Need Personal <span className="text-lightblue">Assistance?</span>
             </h2>
             <p className="text-xl text-gray-600">Our support team is here to help you directly</p>
           </div>
@@ -261,7 +261,7 @@ export default function HelpPage() {
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <option.icon className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-gray-900 group-hover:text-blue-600">{option.title}</CardTitle>
+                  <CardTitle className="text-xl text-gray-900 group-hover:text-lightblue">{option.title}</CardTitle>
                   <p className="text-gray-600 mb-4">{option.description}</p>
                   <div className="flex items-center justify-center mb-3">
                     <Clock className="h-4 w-4 text-green-600 mr-2" />
@@ -280,8 +280,8 @@ export default function HelpPage() {
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="mb-4 sm:mb-6 text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#1B0073] drop-shadow-2xl">
-              Frequently Asked <span className="text-[#00A5E0]">Questions</span>
+            <h2 className="mb-4 sm:mb-6 text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-darkblue drop-shadow-2xl">
+              Frequently Asked <span className="text-lightblue">Questions</span>
             </h2>
             <p className="text-xl text-gray-600">Quick answers to common questions</p>
           </div>
@@ -289,7 +289,7 @@ export default function HelpPage() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-lg text-blue-900">
+                <CardTitle className="flex items-center text-lg text-darkblue">
                   <HelpCircle className="h-5 w-5 mr-2" />
                   How long does the application process take?
                 </CardTitle>
@@ -304,7 +304,7 @@ export default function HelpPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-lg text-blue-900">
+                <CardTitle className="flex items-center text-lg text-darkblue">
                   <HelpCircle className="h-5 w-5 mr-2" />
                   What documents do I need to apply?
                 </CardTitle>
@@ -319,7 +319,7 @@ export default function HelpPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-lg text-blue-900">
+                <CardTitle className="flex items-center text-lg text-darkblue">
                   <HelpCircle className="h-5 w-5 mr-2" />
                   Is there any fee for applying?
                 </CardTitle>
@@ -334,7 +334,7 @@ export default function HelpPage() {
 
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center text-lg text-blue-900">
+                <CardTitle className="flex items-center text-lg text-darkblue">
                   <HelpCircle className="h-5 w-5 mr-2" />
                   Can I track my application status?
                 </CardTitle>
@@ -367,7 +367,7 @@ export default function HelpPage() {
             Our dedicated support team is available 24/7 to assist you with any questions or concerns.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4">
+            <Button asChild size="lg" className="bg-white text-darkblue hover:bg-gray-100 px-8 py-4">
               <Link href="/contact">
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Contact Support
@@ -377,7 +377,7 @@ export default function HelpPage() {
               asChild
               variant="outline"
               size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 bg-transparent"
+              className="border-2 border-white text-white hover:bg-white hover:text-darkblue px-8 py-4 bg-transparent"
             >
               <Link href="tel:+922112345678">
                 <Phone className="h-5 w-5 mr-2" />
